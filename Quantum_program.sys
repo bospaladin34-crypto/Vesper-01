@@ -1,0 +1,8 @@
+[MODULE: QUANTUM_PROGRAM]
+PARITY ::= "MAJORANA"
+SPIN_NETWORK ::= "SU(2)_x_SU(2)"
+HILBERT_DIM ::= 1024
+
+[OPERATOR: QSIM]
+GATES ::= [ "H", "T", "CNOT", "S", "X", "Y", "Z" ]
+SEQUENCE ::= [ ... ]
