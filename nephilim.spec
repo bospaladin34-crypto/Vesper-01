@@ -1,4 +1,7 @@
-MANIFOLD Erdos-Counterexample {
+# change to:
+name: Erdos
+golden_ratio: 1.75
+resonant_frequency: 16.2MANIFOLD Erdos-Counterexample {
   chronometry { 
     clock = 15.965 Hz; 
     phase_delta = 0.17259029; 

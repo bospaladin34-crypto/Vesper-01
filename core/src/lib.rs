@@ -1,13 +1,11 @@
-pub const MANIFOLD_NAME: &str = "Nephilim";
-pub const RESONANT_FREQUENCY: f64 = 15.965;
-pub const GOLDEN_RATIO: f64 = 1.618033988749895;
-pub const HIGH_DIM_PROJECTION: &str = "8D high_dim_projection";
-pub const E8_PROJECTION: &str = "E8_projected";
+mod generated;
+use generated::*;
 
 pub fn manifold_name() -> &'static str { MANIFOLD_NAME }
 pub fn resonant_frequency() -> f64 { RESONANT_FREQUENCY }
 pub fn golden_ratio() -> f64 { GOLDEN_RATIO }
 
+// φ drives everything live
 pub fn snap_base() -> f64 { 180.0 / golden_ratio() }
 pub fn snap_angle() -> f64 { snap_base() - 20.24611797498107 }
 pub fn ground_angle() -> f64 { 360.0 / (golden_ratio() * golden_ratio()) }
@@ -29,9 +27,8 @@ pub fn generate_points(n: usize) -> Vec<[f64; 3]> {
 }
 
 pub fn manifold_info() -> String {
-    format!("{} | {:.3}Hz | φ={:.15} | snap={:.0}° (base {:.3}°) | ground={:.3}° | {} | {}",
+    format!("{} | {:.3}Hz | φ={:.15} | snap={:.0}° (base {:.3}°) | ground={:.3}°",
         manifold_name(), resonant_frequency(), golden_ratio(),
-        snap_angle(), snap_base(), ground_angle(),
-        e8_projection(), high_dim_projection()
+        snap_angle(), snap_base(), ground_angle()
     )
 }
