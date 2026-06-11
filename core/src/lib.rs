@@ -1,4 +1,5 @@
-mod generated; use generated::*;
+mod generated; mod braid; use generated::*;
+pub use braid::braid_word;
 pub fn manifold_name()->&'static str{MANIFOLD_NAME}
 pub fn resonant_frequency()->f64{RESONANT_FREQUENCY}
 pub fn golden_ratio()->f64{GOLDEN_RATIO}

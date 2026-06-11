@@ -1,0 +1,10 @@
+name: VESPER-01
+golden_ratio: 1.618033988749895
+resonant_frequency: 15.965
+dimension: 48
+internal_symmetry: E8_E7_E6
+phason_field: Phi
+substrate: M4xA44
+nu_p: 0.17259029
+tensors: 4672
+ness: true

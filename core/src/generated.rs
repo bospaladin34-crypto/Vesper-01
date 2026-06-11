@@ -1,1 +1,1 @@
-pub const MANIFOLD_NAME:&str="Erdos";pub const RESONANT_FREQUENCY:f64=16.2;pub const GOLDEN_RATIO:f64=1.75;pub const DIMENSION:u32=48;pub const INTERNAL_SYMMETRY:&str="SU5_aperiodic";pub const PHASON_FIELD:&str="Phi";pub const SUBSTRATE:&str="M4xA44";
+pub const MANIFOLD_NAME:&str="VESPER-01";pub const RESONANT_FREQUENCY:f64=15.965;pub const GOLDEN_RATIO:f64=1.618033988749895;pub const DIMENSION:u32=48;pub const INTERNAL_SYMMETRY:&str="E8_E7_E6";pub const PHASON_FIELD:&str="Phi";pub const SUBSTRATE:&str="M4xA44";
