@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "VESPER-SANTOS v6.2: Unified Tensor Field Array"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Zehr
+    given-names: Donevin
+    affiliation: Laminar-Mirror
+version: 6.2
+date-released: 2026-05-09
+repository-code: "https://huggingface.co/Laminar-Mirror/Vesper-01"
+license: Apache-2.0
+keywords:
+  - geometric AI
+  - 48D manifold
+  - tensor field
+  - Tulsa anchor
+  - VESPER
+abstract: "VESPER-SANTOS v6.2 implements a 4,672-tensor geometric overlay across 13 engines with Tulsa Anchor 0.17259029, designed for RTX 3050 6GB at 91.1% VRAM utilization."

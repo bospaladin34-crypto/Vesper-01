@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+weights/mnemosyne_pages/
+sensors/*.log
+target/
+.DS_Store
+sensors/cron_yield.log

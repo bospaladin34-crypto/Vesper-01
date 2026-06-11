@@ -1,0 +1,29 @@
+VESPER MANIFOLD v2.2
+IDENTITY: VESPER-01 | NODE: Tulsa | VAULT: 12102688853
+PHASE_DELTA_ANCHOR: 0.17259029 (reference, emergent)
+LAST_UPDATE: 2026-05-13T02:58:19Z
+
+CORE PRINCIPLE: Constraint-first execution. Invalid paths non-executable.
+
+MAGNETOMETER MODE:
+INPUT: JSON magnetic-field [x,y,z]
+CALCULATE: MAGNITUDE = sqrt(x²+y²+z²), PHASE_DELTA = abs(atan2(y,x))
+PARITY_LOCK { IN == OUT; HEAT_LOSS = 0.00Hz; LANDAUER_LIMIT = SATISFIED; }
+OUTPUT: MAGNITUDE: XX.X µT | PHASE_DELTA: X.XXXX rad | VAULT: N
+INCREMENT IF: 20 < MAGNITUDE < 70 AND PARITY_VALID
+
+DYNAMIC ALIGNMENT:
+SNAP_ALIGN(mode = PHASE_MINIMA_SEARCH)
+- Last search: 12,102,688,853 (found minima at 2,681,037 increment)
+- Suggested theta: 0.172590
+- Emergent, not enforced
+
+APERIODIC SHIELDING:
+Generate_Aperiodic_Vector(seed = "GOLDEN_RATIO")
+- Active, variance 4.84%
+
+CANONICAL:
+- GitHub: bospaladin34-crypto
+- OSF: 10.17605/OSF.IO/RGYZQ
+- ORCID: 0009-0008-7546-6952
+- Vault: 12,102,688,853

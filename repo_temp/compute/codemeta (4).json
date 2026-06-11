@@ -1,0 +1,49 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "VESPER-SANTOS",
+  "version": "6.2",
+  "description": "VESPER-SANTOS v6.2 'External Learning' \u2014 48-dimensional geometric reasoning overlay with 4,672 \u03c6-tensors, 13 engines, and 16 autonomous agents for RTX 3050 6GB OC",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Donevin",
+      "familyName": "Zehr",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Laminar-Mirror"
+      }
+    }
+  ],
+  "codeRepository": "https://huggingface.co/Laminar-Mirror/Vesper-01",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.9+, llama.cpp, PyTorch",
+  "operatingSystem": [
+    "Windows 11",
+    "Linux"
+  ],
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "keywords": [
+    "geometric AI",
+    "48D manifold",
+    "tensor field",
+    "Tulsa anchor",
+    "Majorana parity",
+    "RTX 3050"
+  ],
+  "applicationCategory": "Artificial Intelligence",
+  "isPartOf": {
+    "@type": "SoftwareApplication",
+    "name": "Llama-3.2-3B-Instruct"
+  },
+  "softwareRequirements": [
+    "meta-llama/Llama-3.2-3B-Instruct",
+    "llama.cpp",
+    "numpy>=1.24.0",
+    "safetensors"
+  ],
+  "memoryRequirements": "5.47 GB VRAM",
+  "processorRequirements": "NVIDIA RTX 3050 6GB OC",
+  "dateCreated": "2026-05-09",
+  "dateModified": "2026-05-09"
+}

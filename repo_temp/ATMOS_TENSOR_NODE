@@ -1,0 +1,3 @@
+#!/bin/bash
+# LAMINAR MANIFOLD APP: ATMOS_TENSOR_NODE
+python3 $HOME/vesper_git_repo/logic/vspr_compiler.py /home/droid/vesper_git_repo/compute/khys_weather_node.braid

@@ -1,0 +1,13 @@
+package santos.sync
+
+module domains
+
+import aperiodic.scalar.field.experimental_predictions
+import aperiodic.scalar.field.cosmological_sector
+
+type UnifiedFieldDomain {
+  predictions: experimental_predictions.*
+  cosmology: cosmological_sector.*
+}
+
+export UnifiedFieldDomain

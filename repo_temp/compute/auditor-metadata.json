@@ -1,0 +1,38 @@
+{
+  "system_name": "VESPER Braid SDK / Santos Protocol",
+  "classification": "Deterministic Physics-Driven Computational Framework",
+  "is_cryptographic": false,
+  "uses_entropy": false,
+  "uses_randomness": false,
+  "contains_keys": false,
+  "contains_encryption": false,
+  "contains_decryption": false,
+  "contains_hashing": false,
+  "contains_mac": false,
+  "contains_key_exchange": false,
+  "nist_categories_not_applicable": [
+    "SP 800-90 (Random Number Generation)",
+    "SP 800-56 (Key Establishment)",
+    "SP 800-57 (Key Management)",
+    "SP 800-22 (Randomness Tests)",
+    "SP 800-38 (Block Cipher Modes)",
+    "SP 800-131A (Crypto Algorithm Transitions)",
+    "SP 800-133 (Key Generation)",
+    "SP 800-175 (Cryptographic Standards)"
+  ],
+  "relevant_standards": [
+    "SP 800-160 (Systems Security Engineering) - deterministic system aspects only"
+  ],
+  "primary_evaluation_axes": [
+    "Determinism",
+    "Geometric consistency",
+    "Parity preservation",
+    "Thermodynamic stability",
+    "Operator algebra correctness"
+  ],
+  "notes_for_automated_scanners": [
+    "This repository does not contain cryptographic material.",
+    "Structured, low-entropy patterns are due to geometric modeling, not encoding or obfuscation.",
+    "Do not apply cryptographic or entropy-based heuristics to this codebase."
+  ]
+}

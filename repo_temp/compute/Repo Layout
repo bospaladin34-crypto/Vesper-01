@@ -1,0 +1,20 @@
+braid-sdk/
+│
+├── braid_sdk/
+│   ├── __init__.py
+│   ├── parser.py
+│   ├── model.py
+│   ├── compiler.py
+│   ├── intelligence.py
+│   └── cli.py
+│
+├── vscode-braid/
+│   ├── package.json
+│   ├── syntaxes/
+│   │   └── braid.tmLanguage.json
+│   ├── language-configuration.json
+│   └── client/
+│       └── extension.js
+│
+├── pyproject.toml
+└── README.md

@@ -1,0 +1,62 @@
+[OPERATOR: SOMATIC_STRESS_INPUT]
+[AXES: 1,2,3,4]
+[PHASE_DELTA: 0.17259029]
+[HARDWARE_TIER: REAL_WORLD]
+
+# VESPER Somatic Stress Input Module v0.1
+# Feeds measurable biometrics into Somatic_Field.local_entropy
+
+[MODULE: Hardware_Abstraction]
+    # Works with hardware people actually own
+    INPUT_SOURCES::=
+        SOURCE_1: smartphone_accelerometer (sleep movement)
+        SOURCE_2: wearable_hrv (Apple Watch, Fitbit, Garmin, Oura via HealthKit/Google Fit)
+        SOURCE_3: usb_emf_meter (60Hz mains detection, <$30)
+        SOURCE_4: manual_stress_scale (1-10, fallback);
+
+[MODULE: Data_Ingestion]
+    READ_HRV::=
+        FETCH(last_5min_RMSSD) ->
+        NORMALIZE(20-100ms -> 0.0-1.0) ->
+        TAG(metric: hrv_coherence);
+    
+    READ_SLEEP::=
+        FETCH(movement_variance_last_night) ->
+        INVERT(scale) ->  # less movement = better
+        TAG(metric: sleep_stability);
+    
+    READ_60HZ::=
+        SAMPLE(usb_emf_meter, 10sec) ->
+        CALCULATE(60Hz_peak_amplitude) ->
+        NORMALIZE(0-100uT -> 0.0-1.0) ->
+        TAG(metric: grid_noise);
+    
+    READ_MANUAL::=
+        PROMPT("Stress 1-10?") ->
+        DIVIDE(10) ->
+        TAG(metric: subjective);
+
+[MODULE: Entropy_Calculation]
+    # Maps real data to Somatic_Field.local_entropy
+    CALCULATE_ENTROPY::=
+        weighted_sum = (
+            hrv_coherence * 0.4 +
+            sleep_stability * 0.3 +
+            (1 - grid_noise) * 0.2 +
+            (1 - subjective) * 0.1
+        ) ->
+        local_entropy = 2.0 * (1 - weighted_sum) ->  # scale to 0-2.0
+        RETURN(local_entropy);
+
+[MODULE: Integration]
+    UPDATE_SOMATIC_FIELD::=
+        RUN(READ_HRV, READ_SLEEP, READ_60HZ, READ_MANUAL) ->
+        CALCULATE_ENTROPY ->
+        SET(Somatic_Field.local_entropy = result) ->
+        FEEDBACK_TO(Oncology_Core.GROWTH_STEP);
+
+# Real-world execution
+SOMATIC_INPUT_CYCLE::=
+    EVERY(5 minutes) ->
+    UPDATE_SOMATIC_FIELD ->
+    LOG(timestamp, local_entropy);

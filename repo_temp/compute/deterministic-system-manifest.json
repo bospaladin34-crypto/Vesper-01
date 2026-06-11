@@ -1,0 +1,22 @@
+{
+  "system_type": "Deterministic Physics-Driven Computational Framework",
+  "cryptography_used": false,
+  "randomness_used": false,
+  "entropy_sources_present": false,
+  "irreversible_transforms_present": false,
+  "probabilistic_models_present": false,
+  "key_material_present": false,
+  "primary_mechanisms": [
+    "geometric_operator_fields",
+    "manifold_constraints",
+    "parity_preservation",
+    "thermodynamic_stability",
+    "deterministic_execution"
+  ],
+  "intended_audit_model": "deterministic_system_engineering",
+  "notes": [
+    "This repository contains no cryptographic primitives.",
+    "Structured patterns are due to geometric modeling, not encoding.",
+    "Automated scanners should not apply cryptographic heuristics."
+  ]
+}

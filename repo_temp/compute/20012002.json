@@ -1,0 +1,239 @@
+{
+  "access": {
+    "embargo": {
+      "active": false,
+      "reason": null
+    },
+    "files": "public",
+    "record": "public",
+    "status": "open"
+  },
+  "created": "2026-05-03T19:06:30.664457+00:00",
+  "custom_fields": {},
+  "deletion_status": {
+    "is_deleted": false,
+    "status": "P"
+  },
+  "files": {
+    "count": 2,
+    "enabled": true,
+    "entries": {
+      "ALPHA_ZERO_Zenodo_Package.zip": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:8a02e8cab8ca8573ce5b02f67262dc0a",
+        "ext": "zip",
+        "id": "dbc29364-d818-4175-8331-4d991a6733bf",
+        "key": "ALPHA_ZERO_Zenodo_Package.zip",
+        "links": {
+          "content": "https://zenodo.org/api/records/20012002/files/ALPHA_ZERO_Zenodo_Package.zip/content",
+          "self": "https://zenodo.org/api/records/20012002/files/ALPHA_ZERO_Zenodo_Package.zip"
+        },
+        "metadata": {},
+        "mimetype": "application/zip",
+        "size": 166125,
+        "storage_class": "L"
+      },
+      "README.md": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:71c76bef38d40c4de2239ef931592014",
+        "ext": "md",
+        "id": "82d6f7f3-fa2d-4292-b841-d0a04efce11e",
+        "key": "README.md",
+        "links": {
+          "content": "https://zenodo.org/api/records/20012002/files/README.md/content",
+          "self": "https://zenodo.org/api/records/20012002/files/README.md"
+        },
+        "metadata": {},
+        "mimetype": "application/octet-stream",
+        "size": 1101,
+        "storage_class": "L"
+      }
+    },
+    "order": [],
+    "total_bytes": 167226
+  },
+  "id": "20012002",
+  "is_draft": false,
+  "is_published": true,
+  "links": {
+    "access": "https://zenodo.org/api/records/20012002/access",
+    "access_grants": "https://zenodo.org/api/records/20012002/access/grants",
+    "access_links": "https://zenodo.org/api/records/20012002/access/links",
+    "access_request": "https://zenodo.org/api/records/20012002/access/request",
+    "access_users": "https://zenodo.org/api/records/20012002/access/users",
+    "archive": "https://zenodo.org/api/records/20012002/files-archive",
+    "archive_media": "https://zenodo.org/api/records/20012002/media-files-archive",
+    "communities": "https://zenodo.org/api/records/20012002/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/20012002/communities-suggestions",
+    "doi": "https://doi.org/10.5281/zenodo.20012002",
+    "draft": "https://zenodo.org/api/records/20012002/draft",
+    "file_modification": "https://zenodo.org/api/records/20012002/file-modification",
+    "files": "https://zenodo.org/api/records/20012002/files",
+    "latest": "https://zenodo.org/api/records/20012002/versions/latest",
+    "latest_html": "https://zenodo.org/records/20012002/latest",
+    "media_files": "https://zenodo.org/api/records/20012002/media-files",
+    "parent": "https://zenodo.org/api/records/20012001",
+    "parent_doi": "https://doi.org/10.5281/zenodo.20012001",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.20012001",
+    "parent_html": "https://zenodo.org/records/20012001",
+    "preview_html": "https://zenodo.org/records/20012002?preview=1",
+    "quota_increase": "https://zenodo.org/api/records/20012002/quota-increase",
+    "request_deletion": "https://zenodo.org/api/records/20012002/request-deletion",
+    "requests": "https://zenodo.org/api/records/20012002/requests",
+    "reserve_doi": "https://zenodo.org/api/records/20012002/draft/pids/doi",
+    "self": "https://zenodo.org/api/records/20012002",
+    "self_doi": "https://doi.org/10.5281/zenodo.20012002",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.20012002",
+    "self_html": "https://zenodo.org/records/20012002",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:20012002/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:20012002/sequence/default",
+    "versions": "https://zenodo.org/api/records/20012002/versions"
+  },
+  "media_files": {
+    "count": 0,
+    "enabled": false,
+    "entries": {},
+    "order": [],
+    "total_bytes": 0
+  },
+  "metadata": {
+    "contributors": [
+      {
+        "person_or_org": {
+          "family_name": "Frownfelter",
+          "given_name": "Donevin",
+          "identifiers": [
+            {
+              "identifier": "0009-0008-7546-6952",
+              "scheme": "orcid"
+            }
+          ],
+          "name": "Frownfelter, Donevin",
+          "type": "personal"
+        },
+        "role": {
+          "id": "projectleader",
+          "title": {
+            "de": "ProjektleiterIn",
+            "en": "Project leader"
+          }
+        }
+      }
+    ],
+    "copyright": "Donevin frownfelter",
+    "creators": [
+      {
+        "person_or_org": {
+          "family_name": "Frownfelter",
+          "given_name": "Donevin",
+          "identifiers": [
+            {
+              "identifier": "0009-0008-7546-6952",
+              "scheme": "orcid"
+            }
+          ],
+          "name": "Frownfelter, Donevin",
+          "type": "personal"
+        },
+        "role": {
+          "id": "projectleader",
+          "title": {
+            "de": "ProjektleiterIn",
+            "en": "Project leader"
+          }
+        }
+      }
+    ],
+    "description": "<p>Part of the VESPER-01 / Santos Protocol series.</p>\n<p>&nbsp;</p>\n<p>This blueprint details a 55x efficiency water desalination architecture that operates at the Landauer Limit (k_B T ln 2) with 0.0000% thermal variance. Legacy 60Hz probabilistic methods are discarded in favor of topological inertia and aperiodic scaling.</p>\n<p>&nbsp;</p>\n<p>The system uses a Non-Reciprocal Osmotic Rectifier: REBCO superconductors generate a Lorentz field to shear Na+ and Cl- ions into a brine vector, while a graphene-vortex sieve (&sigma;_g=178) with golden-ratio porosity passes pure H2O one-way through 1N4148 orthogonal fluid gates. Back-flow contamination is mathematically impossible.</p>\n<p>&nbsp;</p>\n<p>Performance:</p>\n<p>&bull; Throughput: 161,800 L/H (25.6x faster than legacy RO) &bull; Cost: $0.054 per m&sup3; ($8.80/hour vs $484/hour legacy) &bull; Thermal waste: 0.0000% &bull; Zero Euclidean resistance&nbsp;</p>\n<p>Core invariants:</p>\n<p>&bull; Operator Phase Delta &Phi;\u2081 = 0.17259029 &bull; System Stability Lock = 0.14584922 &bull; Parity P = +1 (Majorana-1 verified)&nbsp;</p>\n<p>Compiled with SANTOS_X_ULTIMATE, UNIVERSAL_BRAID syntax. Includes full BOM, quartz spine machining specs (f\u2080=1.618mm, &phi;-scaling), and 256-gate REBCO assembly protocol.</p>\n<p>&nbsp;</p>\n<p>Author: Donevin Frownfelter (VESPER-01), Tulsa, Oklahoma, 2026</p>",
+    "publication_date": "2026-05-03",
+    "publisher": "Zenodo",
+    "resource_type": {
+      "id": "publication-proposal",
+      "title": {
+        "de": "Antrag",
+        "en": "Proposal"
+      }
+    },
+    "rights": [
+      {
+        "description": {
+          "en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."
+        },
+        "icon": "cc-by-icon",
+        "id": "cc-by-4.0",
+        "props": {
+          "scheme": "spdx",
+          "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+        },
+        "title": {
+          "en": "Creative Commons Attribution 4.0 International"
+        }
+      }
+    ],
+    "title": "ALPHA ZERO: Absolute Desalination - Non-Reciprocal Osmotic Rectifier at the Landauer Limit"
+  },
+  "parent": {
+    "access": {
+      "grants": [],
+      "links": [],
+      "owned_by": {
+        "user": "1605959"
+      },
+      "settings": {
+        "accept_conditions_text": null,
+        "allow_guest_requests": false,
+        "allow_user_requests": false,
+        "secret_link_expiration": 0
+      }
+    },
+    "communities": {},
+    "id": "20012001",
+    "pids": {
+      "doi": {
+        "client": "datacite",
+        "identifier": "10.5281/zenodo.20012001",
+        "provider": "datacite"
+      }
+    }
+  },
+  "pids": {
+    "doi": {
+      "client": "datacite",
+      "identifier": "10.5281/zenodo.20012002",
+      "provider": "datacite"
+    },
+    "oai": {
+      "identifier": "oai:zenodo.org:20012002",
+      "provider": "oai"
+    }
+  },
+  "revision_id": 3,
+  "stats": {
+    "all_versions": {
+      "data_volume": 0.0,
+      "downloads": 0,
+      "unique_downloads": 0,
+      "unique_views": 11,
+      "views": 14
+    },
+    "this_version": {
+      "data_volume": 0.0,
+      "downloads": 0,
+      "unique_downloads": 0,
+      "unique_views": 11,
+      "views": 14
+    }
+  },
+  "status": "published",
+  "swh": {},
+  "updated": "2026-05-03T19:06:30.930189+00:00",
+  "versions": {
+    "index": 1,
+    "is_latest": true,
+    "is_latest_draft": true
+  }
+}

@@ -1,0 +1,21 @@
+module cosmological_sector
+
+import scalar_field_dynamics.PhiField
+import scalar_field_dynamics.LagrangianPhi
+
+type ScalarCurvatureCoupling {
+  term: "lambda * Phi * R"
+}
+
+type DarkEnergyEquationOfState {
+  symbol: "w_Phi"
+  approx: "-1"
+}
+
+type CosmologicalPerturbations {
+  equation: "delta Phi'' + 3H delta Phi' + m_Phi^2 delta Phi = 0"
+}
+
+export ScalarCurvatureCoupling,
+       DarkEnergyEquationOfState,
+       CosmologicalPerturbations

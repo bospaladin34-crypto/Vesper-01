@@ -1,0 +1,30 @@
+module scalar_field_dynamics
+
+import core_geometry.Manifold48D
+import core_geometry.SU5AperiodicSector
+
+type PhiField {
+  domain: Manifold48D
+  internal_symmetry: SU5AperiodicSector
+}
+
+type LagrangianPhi {
+  terms: [
+    "EinsteinHilbert",
+    "ScalarKinetic",
+    "CosinePotential",
+    "ChernSimons",
+    "ScalarCurvatureCoupling"
+  ]
+}
+
+type ModulationOperator {
+  definition: "M[Phi] = 1 + nu_p * Phi"
+  nu_p: "0.17259029"
+}
+
+type PhasonMass {
+  definition: "m_Phi = sqrt(4*pi^2*V0/Phi0^2)"
+}
+
+export PhiField, LagrangianPhi, ModulationOperator, PhasonMass

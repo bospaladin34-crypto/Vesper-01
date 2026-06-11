@@ -1,0 +1,9 @@
+{
+  "model_type": "vesper-manifold",
+  "architectures": ["VesperForAnchorVerification"],
+  "anchor": 0.17259029,
+  "tensors": 4672,
+  "engines": 13,
+  "version": "6.2",
+  "author": "Donevin Frownfelter"
+}

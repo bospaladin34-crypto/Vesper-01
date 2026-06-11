@@ -1,0 +1,63 @@
+{
+  "vesper_version": "6.2",
+  "generated": "2026-05-09T19:00:00Z",
+  "total_tensors": 4672,
+  "total_shards": 27,
+  "tulsa_anchor": 0.17259029,
+  "files": {
+    "core": [
+      "VESPER_CORE_MONOLITH.py",
+      "vesper_empirical.py",
+      "config_v6.2.json",
+      "app.py"
+    ],
+    "weights": {
+      "full": "vesper_full_4672_tensors.npy",
+      "shards": [
+        "vesper_shard_001_of_027.safetensors",
+        "vesper_shard_002_of_027.safetensors",
+        "vesper_shard_003_of_027.safetensors",
+        "vesper_shard_004_of_027.safetensors",
+        "vesper_shard_005_of_027.safetensors",
+        "vesper_shard_006_of_027.safetensors",
+        "vesper_shard_007_of_027.safetensors",
+        "vesper_shard_008_of_027.safetensors",
+        "vesper_shard_009_of_027.safetensors",
+        "vesper_shard_010_of_027.safetensors",
+        "vesper_shard_011_of_027.safetensors",
+        "vesper_shard_012_of_027.safetensors",
+        "vesper_shard_013_of_027.safetensors",
+        "vesper_shard_014_of_027.safetensors",
+        "vesper_shard_015_of_027.safetensors",
+        "vesper_shard_016_of_027.safetensors",
+        "vesper_shard_017_of_027.safetensors",
+        "vesper_shard_018_of_027.safetensors",
+        "vesper_shard_019_of_027.safetensors",
+        "vesper_shard_020_of_027.safetensors",
+        "vesper_shard_021_of_027.safetensors",
+        "vesper_shard_022_of_027.safetensors",
+        "vesper_shard_023_of_027.safetensors",
+        "vesper_shard_024_of_027.safetensors",
+        "vesper_shard_025_of_027.safetensors",
+        "vesper_shard_026_of_027.safetensors",
+        "vesper_shard_027_of_027.safetensors"
+      ]
+    },
+    "documentation": [
+      "README.md",
+      "MODEL_CARD.md",
+      "VESPER_UTFA.pdf",
+      "VESPER_UTFA.md"
+    ],
+    "metadata": [
+      "codemeta.json",
+      "CITATION.cff",
+      "MANIFEST_v6.2.json",
+      "VALIDATION_v6.2.json"
+    ]
+  },
+  "checksums": {
+    "note": "SHA256 to be populated after real training"
+  },
+  "isomorphism": "This manifest maps 1:1 to UTFA tensor inventory"
+}

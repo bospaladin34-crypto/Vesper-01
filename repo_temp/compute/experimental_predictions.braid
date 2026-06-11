@@ -1,0 +1,28 @@
+module experimental_predictions
+
+import scalar_field_dynamics.ModulationOperator
+import frequency_and_scaling.UniversalFrequency
+
+type AtomicClockShift {
+  prediction: "1.24 ns/hr"
+  system: "co-located Sr-87 optical clocks"
+}
+
+type RabiSplittingEnhancement {
+  prediction: "17.26 %"
+  system: "cavity QED"
+}
+
+type QuasicrystalModulationIndex {
+  prediction: "0.122"
+  system: "SU(5) aperiodic quasicrystals"
+}
+
+type ClassicalFrequencyLocking {
+  condition: "omega_drive = n * f0"
+}
+
+export AtomicClockShift,
+       RabiSplittingEnhancement,
+       QuasicrystalModulationIndex,
+       ClassicalFrequencyLocking

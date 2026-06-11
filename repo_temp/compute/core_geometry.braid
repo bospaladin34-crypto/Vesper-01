@@ -1,0 +1,14 @@
+module core_geometry
+
+type Manifold48D {
+  base: "M4"        // 4D Lorentzian spacetime
+  internal: "A44"   // 44D aperiodic compact sector
+}
+
+type SU5AperiodicSector {
+  symmetry_group: "SU(5)"
+  structure: "aperiodic"
+  role: "internal_phason_space"
+}
+
+export Manifold48D, SU5AperiodicSector

@@ -1,0 +1,16 @@
+module frequency_and_scaling
+
+import scalar_field_dynamics.PhiField
+
+type UniversalFrequency {
+  symbol: "f0"
+  value: "15.965 Hz"
+  definition: "derived_from_atomic_constants"
+}
+
+type ScalingRelations {
+  Phi0: "h / f0"
+  notes: "sets natural phason scale"
+}
+
+export UniversalFrequency, ScalingRelations

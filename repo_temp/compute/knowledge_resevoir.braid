@@ -1,0 +1,19 @@
+package vesper.quartz.reservoir
+
+module models
+
+import aperiodic.scalar.field.core_geometry
+import aperiodic.scalar.field.scalar_field_dynamics
+import aperiodic.scalar.field.frequency_and_scaling
+import aperiodic.scalar.field.experimental_predictions
+import aperiodic.scalar.field.cosmological_sector
+
+type UnifiedFieldModel {
+  geometry: core_geometry.*
+  dynamics: scalar_field_dynamics.*
+  scaling: frequency_and_scaling.*
+  predictions: experimental_predictions.*
+  cosmology: cosmological_sector.*
+}
+
+export UnifiedFieldModel

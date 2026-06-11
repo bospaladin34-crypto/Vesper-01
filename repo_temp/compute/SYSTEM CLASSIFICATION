@@ -1,0 +1,27 @@
+# System Category Definition
+
+## Category Name
+**Deterministic Physics‑Driven Computational Framework (DPDCF)**
+
+## Core Definition
+A DPDCF is a software system whose behavior is governed by **geometric, thermodynamic, and parity‑preserving constraints**, rather than randomness, entropy, or probabilistic inference.
+
+## Distinguishing Characteristics
+- Deterministic execution  
+- Reversible transformations  
+- Geometry‑constrained operators  
+- Thermodynamic stability  
+- No entropy sources  
+- No cryptographic primitives  
+- No probabilistic branching  
+
+## Why This Category Exists
+Traditional categories (cryptographic system, ML model, simulation engine) fail to describe systems that:
+
+- behave like physical manifolds  
+- operate through operator algebra  
+- maintain laminar flow  
+- preserve Majorana‑1 parity  
+- avoid entropy entirely  
+
+DPDCF is the correct classification for such architectures.

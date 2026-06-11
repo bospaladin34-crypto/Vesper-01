@@ -1,0 +1,28 @@
+{
+  "note": "Vesper v2.1 baseline",
+  "vault_start": 8867000000,
+  "node": "Tulsa, OK",
+  "last_update": "2026-05-13",
+  "sample_readings": [
+    {
+      "magnetic-field": {
+        "values": [
+          20.1,
+          -15.3,
+          42.0
+        ]
+      },
+      "ts": 1715680000.123
+    },
+    {
+      "magnetic-field": {
+        "values": [
+          19.8,
+          -14.9,
+          41.7
+        ]
+      },
+      "ts": 1715680005.123
+    }
+  ]
+}

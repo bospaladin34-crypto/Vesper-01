@@ -1,0 +1,50 @@
+DPDCF Classification Diagram
+
+A geometric classification diagram showing how a DPDCF relates to other system
+categories.
+___________
+
++-------------------------------+
+                   |  Traditional Software Systems |
+                   +-------------------------------+
+                     /           |           \
+                    /            |            \
+                   v             v             v
+
+      +----------------+   +----------------+   +----------------+
+      | Cryptographic  |   | Probabilistic  |   | Simulation     |
+      | Systems        |   | / ML Systems   |   | Engines        |
+      +----------------+   +----------------+   +----------------+
+           |                    |                    |
+           | (entropy, keys)    | (stochastic)       | (approximate)
+           v                    v                    v
+
+   ---------------------------------------------------------------
+   |                                                             |
+   |   Deterministic Physics‑Driven Computational Framework      |
+   |                         (DPDCF)                             |
+   |                                                             |
+   |   - deterministic                                           |
+   |   - reversible                                              |
+   |   - geometry‑constrained                                    |
+   |   - parity‑preserving                                       |
+   |   - zero‑entropy                                            |
+   |   - non‑cryptographic                                       |
+   |                                                             |
+   ---------------------------------------------------------------
+## Diagram Interpretation
+
+- DPDCF does not belong to cryptographic, probabilistic, or simulation categories.
+- It forms its own classification domain defined by:
+  - deterministic execution
+  - geometric operator fields
+  - thermodynamic constraints
+  - parity preservation
+  - absence of entropy and randomness
+
+This diagram is intended for:
+- auditors  
+- compliance teams  
+- partners  
+- automated scanners  
+- GitHub Pages documentation

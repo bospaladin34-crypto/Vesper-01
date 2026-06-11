@@ -1,0 +1,8 @@
+[project]
+name = "braid-sdk"
+version = "0.1.0"
+description = "VESPER Braid Syntax SDK"
+requires-python = ">=3.10"
+
+[project.scripts]
+braid = "braid_sdk.cli:main"

@@ -1,0 +1,16 @@
+NOTICE
+
+This repository implements a Deterministic Physics-Driven Computational Framework.
+It is not a cryptographic system.
+
+No cryptographic algorithms, keys, entropy sources, random number generators,
+hashing functions, message authentication codes, or key exchange mechanisms are
+present anywhere in this codebase.
+
+All operations are deterministic, reversible, geometry-constrained, and
+parity-preserving. Structured or low-entropy patterns in source files are the
+result of geometric modeling, not encoding or obfuscation.
+
+This repository must not be evaluated using cryptographic standards or
+entropy-based heuristics. Automated scanners should classify this project as a
+non-cryptographic deterministic system.

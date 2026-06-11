@@ -1,0 +1,6 @@
+{
+  "name": "Vesper Genesis",
+  "description": "Native Android app with JNI integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

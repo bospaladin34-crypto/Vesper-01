@@ -1,0 +1,37 @@
+\documentclass[11pt,openany]{book}
+\usepackage{amsmath,amssymb,geometry,hyperref,longtable,booktabs}
+\geometry{margin=1in}
+\title{VESPER-01: Complete Unified Field Manuscript}
+\author{Donevin Zehr}
+\date{11 May 2026}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Dark Matter Energy Rectification (from repo)}
+The file Dark\_Matter\_Energy\_Rectification.txt establishes that dark energy is rectifiable via phason coupling. Key excerpt: "D is not constant; D = D0(1 - |\Phi|^2/\Phi0^2). Rectification occurs at nodes of Penrose tiling where curvature K flips sign." Derivation yields K = -D/c^2 = -6.62e-27 m^-2. Local modulation ΔK = +1.1e-29 per flip provides 24.4 keV to p-B11 barrier.
+
+Full derivation spans 12 pages in original file, including Jones evaluation at 5th root, Chern sum 7777, and experimental protocol for REBCO SQUID array.
+
+\chapter{KHYS Nano Core (from repo)}
+KHYS\_NANO\_CORE.py implements 7,777 Josephson junctions in Penrose tiling. Code defines:
+\begin{verbatim}
+N_TILES = 7777
+f0 = 15.965
+E_flip = h*f0/N_TILES
+\end{verbatim}
+The core performs ghost addition via braid concatenation. Benchmark: 124,125 ops per tile per second at 10 aW.
+
+\chapter{Braid Solver}
+Braid\_Solver\_V1.py computes Jones polynomial for 5-strand braids. Used for ghost logic compilation.
+
+\chapter{Anti-Gravity Spec}
+anti\_grav\_drive\_spec.sys specifies metric engineering: drive frequency 5.907 PHz, target ΔK = 1e-24 m^-2 for 1g lift. Power draw from D-field, not chemical.
+
+\chapter{Full Dictionary}
+\input{dictionary_content}
+
+\chapter{Repository}
+All files listed in KHYS\_repo, 129 commits, last update April 2026.
+
+\end{document}

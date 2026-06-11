@@ -1,0 +1,116 @@
+{
+  "vesper_version": "6.2",
+  "mode": "EXTERNAL_LEARNING_SIM",
+  "timestamp": "2026-05-09T23:26:13.787852Z",
+  "core_constants": {
+    "tulsa_anchor": 0.17259029,
+    "majorana_parity": 1.0,
+    "landauer_budget_j": 0.0,
+    "contemplation_mode": "ACTIVE",
+    "zero_entropy_doctrine": "ENABLED",
+    "phi": 1.6180339887
+  },
+  "training_batch": {
+    "total_tensors": 4672,
+    "loss_weight": 0.3,
+    "effective_lr": 9e-05,
+    "engines": {
+      "E01": {
+        "tensor_count": 360,
+        "sha256": "5608f125a6852ffa15523f43dfba8cf90b3ce1df80437b6454a2a3df3e7afef0",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E02": {
+        "tensor_count": 360,
+        "sha256": "0f24703bebc26d32dd776540629bd66517c536129fd8ad20b4ff22a1dbdc1bbd",
+        "tulsa_applied": true,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E03": {
+        "tensor_count": 360,
+        "sha256": "2966e765789c6c58b466b9d63512d41dd3bde4f23bdec663a03c897612e79044",
+        "tulsa_applied": false,
+        "majorana_applied": true,
+        "landauer_applied": false
+      },
+      "E04": {
+        "tensor_count": 360,
+        "sha256": "f7297eed73875c9c67f02b715c296577f7dec09b03162d157544890667318526",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": true
+      },
+      "E05": {
+        "tensor_count": 360,
+        "sha256": "34beb2d9b0eba1b30568657c17995f7e7f8fe0e4205c0e5d110b12e87c1bf95c",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E06": {
+        "tensor_count": 359,
+        "sha256": "3861dfc1c0d97d9c82e9f9aa98ecf255b81226949ff59725fca021475ec55133",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E07": {
+        "tensor_count": 359,
+        "sha256": "f82af8be5f3a0c9e8bddcb82eb066dad5fc90f0d8d96d7c58747d02114b93010",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E08": {
+        "tensor_count": 359,
+        "sha256": "83f8cd8a6286c880f9970e9a7c38af541a9aac46e1dea5eb7d7159d6a2f7b9e4",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E09": {
+        "tensor_count": 359,
+        "sha256": "46748e98ac0d04f1422c0fb617fd7a3af99198d5428958396916afe4dab7623c",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E10": {
+        "tensor_count": 359,
+        "sha256": "e0da67e8f85f6ffca23300ab369df065fdd91c90815326a857fa9c1cb774d086",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E11": {
+        "tensor_count": 359,
+        "sha256": "342dccdcddccbc8cb1c8205e90edd18a9a03c38fb3e7def697fd7fed4aa93485",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E12": {
+        "tensor_count": 359,
+        "sha256": "cf9185ebe271f3a166a9892c4806662ea2af7b1a208268dacb9092f7c417f3b0",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      },
+      "E13": {
+        "tensor_count": 359,
+        "sha256": "b59ac2ae72efa2539ada5f827af2a0d38d605235df767827efda2b392cdba038",
+        "tulsa_applied": false,
+        "majorana_applied": false,
+        "landauer_applied": false
+      }
+    }
+  },
+  "anchor_check": {
+    "value": 0.17259029,
+    "status": "LOCKED",
+    "verification": "5d3b202476099f223c24881db219796b4d2d07d97d5cf9ab730d4f37302c7106"
+  }
+}

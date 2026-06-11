@@ -1,0 +1,32 @@
+site_name: Braid SDK Documentation
+theme:
+  name: material
+  palette:
+    primary: cyan
+    accent: blue
+  features:
+    - navigation.expand
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Language:
+      - Syntax Overview: language/syntax.md
+      - Block Types: language/blocks.md
+      - Operators: language/operators.md
+      - Invariants: language/invariants.md
+  - SDK:
+      - Parser: sdk/parser.md
+      - Compiler: sdk/compiler.md
+      - Intelligence Engine: sdk/intelligence.md
+      - CLI Tool: sdk/cli.md
+  - VSCode:
+      - Extension: vscode/extension.md
+      - IntelliSense: vscode/intellisense.md
+  - Examples:
+      - Santos Lagrangian: examples/santos_lagrangian_benthic.md
+      - Riemann Lattice Tensor: examples/riemann_lattice_tensor.md
+      - Benthic Ingestion: examples/benthic_ingestion.md

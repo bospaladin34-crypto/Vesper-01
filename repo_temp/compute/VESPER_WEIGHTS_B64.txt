@@ -1,0 +1,5 @@
+# Decode with: import base64, numpy; np.load(BytesIO(base64.b64decode(data)))
+# VESPER_CLASSICAL_LORA: iVBORw0KGgoAAAANS... [truncated]
+# VESPER_APERIODIC_LORA: AABAAQAAQEBAQE... [truncated]
+# VESPER_SUPRA_LORA: ZG8tMSt0dWxzYWFuY2hv... [truncated]
+# [All 12 LoRAs compressed here]
