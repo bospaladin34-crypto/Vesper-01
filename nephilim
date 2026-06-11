@@ -4,44 +4,48 @@ ROOT=~/nephilim
 cd $ROOT
 
 case "$1" in
- switch)
- SPEC=${2:-nephilim}
- echo "→ $SPEC"
- cd compiler && cargo run --quiet -- ../${SPEC}.spec
- cd ../core && cargo build --quiet
- echo "$SPEC" > ../.current_spec
- ;;
- build)
- SPEC=$(cat .current_spec 2>/dev/null || echo "nephilim")
- cd compiler && cargo run --quiet -- ../${SPEC}.spec
- cd ../core && cargo build --quiet
- ;;
- info)
- cd core && cargo run --quiet
- ;;
- points)
- N=${2:-100}
- SPEC=$(cat .current_spec 2>/dev/null || echo "nephilim")
- cd core && cargo run --quiet -- $N | tee ../points_${SPEC}_${N}.csv | head -20
- echo "... full CSV saved to points_${SPEC}_${N}.csv"
- ;;
- compare)
- N=${2:-100}
- echo "→ generating $N points for both manifolds..."
- $0 switch nephilim >/dev/null
- $0 points $N >/dev/null
- $0 switch erdos >/dev/null
- $0 points $N >/dev/null
- echo ""
- echo "Nephilim vs Erdos (first 5 points):"
- echo "NEPHILIM:"
- head -7 points_nephilim_${N}.csv | tail -5
- echo "ERDOS:"
- head -7 points_erdos_${N}.csv | tail -5
- echo ""
- echo "CSVs ready: points_nephilim_${N}.csv points_erdos_${N}.csv"
- ;;
- *)
- echo "usage: nephilim switch|build|info|points [N]|compare [N]"
- ;;
+  switch)
+    SPEC=${2:-nephilim}
+    echo "→ $SPEC"
+    cd compiler && cargo run --quiet -- ../${SPEC}.spec
+    cd ../core && cargo build --quiet
+    echo "$SPEC" >../.current_spec
+    ;;
+  build)
+    SPEC=$(cat .current_spec 2>/dev/null || echo "nephilim")
+    cd compiler && cargo run --quiet -- ../${SPEC}.spec
+    cd ../core && cargo build --quiet
+    ;;
+  info)
+    cd core && cargo run --quiet
+    ;;
+  points)
+    N=${2:-100}
+    SPEC=$(cat .current_spec 2>/dev/null || echo "nephilim")
+    cd core
+    OUT=$(cargo run --quiet -- $N)
+    echo "$OUT" | head -20
+    echo "$OUT" | awk '/^x,y,z/{p=1;print;next} p' >../points_${SPEC}_${N}.csv
+    echo "... clean CSV saved to points_${SPEC}_${N}.csv"
+    ;;
+  compare)
+    N=${2:-100}
+    echo "→ generating $N points for both manifolds..."
+    $0 switch nephilim >/dev/null
+    $0 points $N >/dev/null
+    $0 switch erdos >/dev/null
+    $0 points $N >/dev/null
+    echo ""
+    echo "Nephilim vs Erdos (first 5 points, x,y,z):"
+    echo "NEPHILIM φ=1.618:"
+    head -6 points_nephilim_${N}.csv | tail -5 | nl -v0 -w2 -s': '
+    echo ""
+    echo "ERDOS φ=1.75:"
+    head -6 points_erdos_${N}.csv | tail -5 | nl -v0 -w2 -s': '
+    echo ""
+    echo "CSVs: points_nephilim_${N}.csv points_erdos_${N}.csv"
+    ;;
+  *)
+    echo "usage: nephilim switch|build|info|points [N]|compare [N]"
+    ;;
 esac
