@@ -7,19 +7,25 @@ case "$1" in
   switch)
     SPEC=${2:-nephilim}
     echo "→ $SPEC"
-    cd compiler && cargo run --quiet ../${SPEC}.spec
+    cd compiler && cargo run --quiet -- ../${SPEC}.spec
     cd ../core && cargo build --quiet
     echo "$SPEC" > ../.current_spec
     ;;
   build)
     SPEC=$(cat .current_spec 2>/dev/null || echo "nephilim")
-    cd compiler && cargo run --quiet ../${SPEC}.spec
+    cd compiler && cargo run --quiet -- ../${SPEC}.spec
     cd ../core && cargo build --quiet
     ;;
   info)
     cd core && cargo run --quiet
     ;;
+  points)
+    N=${2:-100}
+    SPEC=$(cat .current_spec 2>/dev/null || echo "nephilim")
+    cd core && cargo run --quiet -- $N | tee ../points_${SPEC}_${N}.csv | head -20
+    echo "... full CSV saved to points_${SPEC}_${N}.csv"
+    ;;
   *)
-    echo "usage: nephilim switch|build|info"
+    echo "usage: nephilim switch|build|info|points [N]"
     ;;
 esac
