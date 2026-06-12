@@ -1,0 +1,103 @@
+[2026-06-12T11:05:46-06:00] erdos => Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+[2026-06-12T11:05:46-06:00] vesper => Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+[2026-06-12T11:05:46-06:00] phi field test => Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+[2026-06-12T11:07:42-06:00] [BRAID] sigma1 sigma2^-1 sigma1 sigma2 => Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma1 sigma2 sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma1 sigma2^-1 sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma1^2 sigma2^3
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508°
+» sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508° | input='sigma1' | S:ddaeb248dbc9aa66 T:fa22268b4225a879 E8:03fc5cf698dffb26
+» sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508° | input='sigma2' | S:ddd2327904c70d2b T:487fd690330ea883 E8:694af0ee7b633801
+» sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508° | input='sigma1 sigma2' | S:ddcfa37981e79887 T:d4f2f25cfa72e885 E8:f5c65f9861172ed2
+» sigma1 sigma2 sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508° | input='sigma1 sigma2 sigma1' | S:ddfc46e59796fd7d T:19b297d906948880 E8:21ae04aa04e8c960
+» sigma1 sigma2^-1 sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508° | input='sigma1 sigma2^-1 sigma1 sigma2' | S:ddc0d623a0c9beaf T:a6d43df240600885 E8:ea38384e89c65ca1
+» sigma1^2 sigma2^3
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | Φ=Phi | snap=91° ground=137.508° | input='sigma1^2 sigma2^3' | S:ddeab20856130ca6 T:4bfb8ab3bbade882 E8:49a8b06d710f1591
+» sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1'
+S:56084fb3 T:fd780f04 E8:23d5b363
+snap=54° ground=137.508°
+» sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma2'
+S:688192d6 T:5e990022 E8:80354046
+snap=55° ground=137.508°
+» sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2'
+S:e65c2076 T:041ebb10 E8:dab30778
+snap=12° ground=137.508°
+» sigma1 sigma2 sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2 sigma1'
+S:640cec72 T:55383b58 E8:8b958730
+snap=55° ground=137.508°
+» sigma1 sigma2^-1 sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2^-1 sigma1 sigma2'
+S:ec1c94b3 T:8a8aff01 E8:54274367
+snap=12° ground=137.508°
+» sigma1^2 sigma2^3
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1^2 sigma2^3'
+S:06864b7d T:0040d755 E8:deed6b32
+snap=49° ground=137.508°
+=== sigma1 sigma2 sigma1 vs sigma2 sigma1 sigma2 ===
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2 sigma1'
+S:640cec72 T:55383b58 E8:8b958730
+snap=55° ground=137.508°
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma2 sigma1 sigma2'
+S:20b1413f T:9ff64410 E8:415bfc78
+snap=51° ground=137.508°
+=== sigma1 sigma2^-1 vs sigma2^-1 sigma1 ===
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2^-1'
+S:057ec307 T:b8381fff E8:6695a069
+snap=49° ground=137.508°
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma2^-1 sigma1'
+S:de036eb4 T:40e979b7 E8:9e44c6d0
+snap=11° ground=137.508°
+=== sigma1^3 vs sigma1 sigma1 sigma1 ===
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1^3'
+S:aca9a70f T:d8b1d1e1 E8:061c6e87
+snap=8° ground=137.508°
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma1 sigma1'
+S:3670eb9b T:51f3544e E8:8f5eec3a
+snap=52° ground=137.508°
+» sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1'
+S:00007164 T:1b0a3987 E8:00000b85
+snap=10° ground=137.508°
+Weaver: k=1 | S_CS quantized
+» sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma2'
+S:00ec8784 T:2721f9ad E8:0017a6fb
+snap=91° ground=137.508°
+Weaver: k=1 | S_CS quantized
+» sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2'
+S:04d9d229 T:39e668c5 E8:007c2e72
+snap=91° ground=137.508°
+Weaver: k=1 | S_CS quantized
+» sigma1 sigma2 sigma1
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2 sigma1'
+S:0019eded T:361867a5 E8:000297f9
+snap=76° ground=137.508°
+Weaver: k=1 | S_CS quantized
+» sigma1 sigma2^-1 sigma1 sigma2
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1 sigma2^-1 sigma1 sigma2'
+S:0469d928 T:2f1682c0 E8:0070fc58
+snap=91° ground=137.508°
+Weaver: k=1 | S_CS quantized
+» sigma1^2 sigma2^3
+Nephilim | 15.965Hz | φ=1.618033988749895 | 48D SU5_aperiodic [M4xA44] | input='sigma1^2 sigma2^3'
+S:0075f80b T:2f47e7d0 E8:000bcc3c
+snap=91° ground=137.508°
+Weaver: k=1 | S_CS quantized

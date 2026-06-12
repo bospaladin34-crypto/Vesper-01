@@ -1,45 +1,25 @@
 #!/bin/bash
 CORE=./core/target/release/nephilim-core
 LOG=~/nephilim/ledger.log
+SPEC_DIR=./specs
 
 case "$1" in
-  switch)
-    echo "$2.spec" >.current_spec
-    echo "→ $2"
-    $CORE --info
+  switch) echo "$2.spec" >.current_spec; echo "→ $2"; $CORE --info ;;
+  hash) shift; $CORE "$@" ;;
+  braid) shift; echo "Artin: $*"; $CORE "$*" ;;
+  braid-list)
+    for bw in "sigma1" "sigma2" "sigma1 sigma2" "sigma1 sigma2 sigma1" "sigma1 sigma2^-1 sigma1 sigma2" "sigma1^2 sigma2^3"; do
+      echo "» $bw"; $CORE "$bw"
+    done | tee -a $LOG
     ;;
-  hash)
-    shift; $CORE "$@"
-    ;;
-  braid)
-    shift
-    braid_word="$*"
-    echo "Artin Braid: $braid_word"
-    out=$($CORE "$braid_word")
-    echo "$out"
-    echo "  ↳ braid word hashed through SU5_aperiodic"
-    ;;
-  log)
-    shift
-    txt="$*"
-    out=$($CORE "$txt")
-    ts=$(date -Iseconds)
-    echo "[$ts] $txt => $out" | tee -a $LOG
-    ;;
-  log-braid)
-    shift
-    braid_word="$*"
-    out=$($CORE "$braid_word")
-    ts=$(date -Iseconds)
-    echo "[$ts] [BRAID] $braid_word => $out" | tee -a $LOG
-    ;;
+  log) shift; out=$($CORE "$*"); ts=$(date -Iseconds); echo "[$ts] $* => $out" | tee -a $LOG ;;
+  latent) echo "latent.spec" >.current_spec; echo "→ latent"; $CORE --info ;;
   status)
     echo "--- Nephilim Status ---"
     echo "spec: $(cat.current_spec 2>/dev/null)"
     $CORE --info
-    echo "ledger: $(wc -l <$LOG 2>/dev/null || echo 0) entries"
+    echo "ledger: $(wc -l < $LOG 2>/dev/null || echo 0) entries"
+    echo "specs:"; ls $SPEC_DIR/*.spec 2>/dev/null | xargs -n1 basename
     ;;
-  serve)
-    python3 server.py
-    ;;
+  serve) python3 server.py ;;
 esac
