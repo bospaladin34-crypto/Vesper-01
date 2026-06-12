@@ -9,13 +9,15 @@ case "$1" in
     $CORE --info
     ;;
   hash)
-    shift
-    $CORE "$@"
+    shift; $CORE "$@"
     ;;
   braid)
     shift
-    # Artin braid word: e.g. ./nephilim braid "sigma1 sigma2^-1"
-    $CORE --braid "$@"
+    braid_word="$*"
+    echo "Artin Braid: $braid_word"
+    out=$($CORE "$braid_word")
+    echo "$out"
+    echo "  ↳ braid word hashed through SU5_aperiodic"
     ;;
   log)
     shift
@@ -24,6 +26,13 @@ case "$1" in
     ts=$(date -Iseconds)
     echo "[$ts] $txt => $out" | tee -a $LOG
     ;;
+  log-braid)
+    shift
+    braid_word="$*"
+    out=$($CORE "$braid_word")
+    ts=$(date -Iseconds)
+    echo "[$ts] [BRAID] $braid_word => $out" | tee -a $LOG
+    ;;
   status)
     echo "--- Nephilim Status ---"
     echo "spec: $(cat.current_spec 2>/dev/null)"
@@ -31,10 +40,6 @@ case "$1" in
     echo "ledger: $(wc -l <$LOG 2>/dev/null || echo 0) entries"
     ;;
   serve)
-    echo "API at http://127.0.0.1:5000"
     python3 server.py
-    ;;
-  *)
-    echo "usage:./nephilim switch|hash|braid|log|status|serve"
     ;;
 esac
