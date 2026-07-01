@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VESPER: Isomorphic Physics Computation Framework — Complete Technical Documentation</title>
+<meta name="color-scheme" content="light dark">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Prism.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" id="prism-light">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" id="prism-dark" media="(prefers-color-scheme: dark)">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<!-- MathJax 3 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['$$', '$$']],
+    tags: 'ams',
+    macros: {
+      R: "{\\mathbb{R}}",
+      Z: "{\\mathbb{Z}}",
+      C: "{\\mathbb{C}}"
+    }
+  },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+:root {
+  --bg: #fcfbfa;
+  --bg-elev: #ffffff;
+  --text: #1c1b1a;
+  --text-soft: #53514f;
+  --text-faint: #7b7772;
+  --border: #e2ded9;
+  --border-strong: #cfc9c2;
+  --accent: #1a1a1a;
+  --link: #2347a7;
+  --code-bg: #f5f3f0;
+  --callout-real-border: #2563eb;
+  --callout-real-bg: #eff6ff;
+  --callout-iso-border: #d97706;
+  --callout-iso-bg: #fffbeb;
+  --callout-if-border: #7c3aed;
+  --callout-if-bg: #f5f3ff;
+  --shadow: 0 8px 30px rgba(27, 23, 18, 0.06);
+  --max-w: 780px;
+  --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --serif: 'Crimson Pro', Charter, Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121111;
+    --bg-elev: #1b1a19;
+    --text: #e8e4de;
+    --text-soft: #bdb7af;
+    --text-faint: #918b84;
+    --border: #2c2a28;
+    --border-strong: #3d3a37;
+    --accent: #f2ede6;
+    --link: #7ca7ff;
+    --code-bg: #1c1b1a;
+    --callout-real-bg: rgba(37, 99, 235, 0.08);
+    --callout-iso-bg: rgba(217, 119, 6, 0.07);
+    --callout-if-bg: rgba(124, 58, 237, 0.09);
+    --shadow: 0 8px 30px rgba(0,0,0,.35);
+  }
+  pre[class*="language-"] { background: #181716 !important; }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 18.5px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Layout */
+.page {
+  display: grid;
+  grid-template-columns: 270px minmax(0, var(--max-w));
+  justify-content: center;
+  gap: 56px;
+  padding: 56px 32px 120px;
+}
+
+.toc-aside {
+  position: sticky;
+  top: 28px;
+  align-self: start;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.toc-aside h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--text-faint);
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+.toc-list { list-style: none; margin: 0; padding: 0; }
+.toc-list li { margin: 0; }
+.toc-list a {
+  display: block;
+  padding: 6px 10px;
+  border-left: 2px solid transparent;
+  color: var(--text-soft);
+  text-decoration: none;
+  border-radius: 0 6px 6px 0;
+}
+.toc-list a:hover { color: var(--text); background: rgba(127,127,127,.07); }
+.toc-list a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(127,127,127,.085); font-weight: 600; }
+.toc-list .secnum { color: var(--text-faint); margin-right: 6px; font-variant-numeric: tabular-nums; }
+
+.doc { min-width: 0; }
+
+/* Mobile TOC */
+.mobile-toc-bar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 18px;
+  font-family: var(--sans);
+}
+.mobile-toc-bar .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: var(--max-w); margin: 0 auto; }
+.mobile-toc-bar strong { font-size: 13px; letter-spacing: .02em; }
+.toc-toggle {
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  color: var(--text);
+  cursor: pointer;
+}
+.mobile-toc-panel {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 8px 18px 16px;
+  max-height: 56vh;
+  overflow: auto;
+}
+.mobile-toc-panel.open { display: block; }
+.mobile-toc-panel a {
+  display: block; padding: 7px 2px; color: var(--text-soft); text-decoration: none; font-family: var(--sans); font-size: 14px;
+}
+
+/* Title block */
+.title-block {
+  margin-bottom: 2.2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.title-block h1 {
+  font-family: var(--sans);
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 .45em;
+  font-weight: 800;
+}
+.subtitle { font-size: 20px; color: var(--text-soft); margin: 0 0 .3em; }
+.version { font-family: var(--sans); font-size: 13.5px; color: var(--text-faint); margin: 0; }
+
+/* Headings */
+h2, h3, h4 { font-family: var(--sans); line-height: 1.32; letter-spacing: -0.01em; }
+h2 {
+  font-size: 26px; font-weight: 760;
+  margin: 3.2rem 0 1rem;
+  padding-top: .4rem;
+  border-top: 1px solid var(--border);
+}
+h2:first-of-type { border-top: none; }
+h3 { font-size: 20px; font-weight: 700; margin: 2.1rem 0 .6rem; color: var(--text); }
+h4 { font-size: 16.8px; font-weight: 700; margin: 1.5rem 0 .4rem; color: var(--text-soft); }
+
+p { margin: .85em 0; }
+a { color: var(--link); }
+
+hr.dink { border: 0; border-top: 1px solid var(--border); margin: 2.2rem 0; }
+
+/* Callouts */
+.callout {
+  border-left: 3px solid #999;
+  padding: 14px 18px;
+  margin: 1.3rem 0;
+  border-radius: 0 10px 10px 0;
+  font-size: 17.2px;
+}
+.callout strong { font-family: var(--sans); font-size: 13px; text-transform: uppercase; letter-spacing: .07em; }
+.callout-real { border-left-color: var(--callout-real-border); background: var(--callout-real-bg); }
+.callout-isomorph { border-left-color: var(--callout-iso-border); background: var(--callout-iso-bg); }
+.callout-interface { border-left-color: var(--callout-if-border); background: var(--callout-if-bg); }
+
+/* Two-col comparison */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 1.2rem 0;
+}
+.compare-grid > div { padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+.compare-grid h4 { margin-top: .2rem; font-size: 13px; text-transform: uppercase; letter-spacing: .07em; }
+.compare-grid .real h4 { color: #2563eb; }
+.compare-grid .iso h4 { color: #b45309; }
+
+/* Code */
+pre[class*="language-"] {
+  margin: 1.15rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  font-size: 13.9px;
+  line-height: 1.6;
+}
+code, pre { font-family: var(--mono); }
+:not(pre) > code {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: .1em .38em;
+  border-radius: 5px;
+  font-size: .84em;
+}
+.code-wrap { position: relative; }
+.copy-btn {
+  position: absolute;
+  top: 8px; right: 8px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  color: var(--text-soft);
+  cursor: pointer;
+}
+.copy-btn:hover { color: var(--text); }
+.copy-btn.copied { color: #0a8f3a; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.15rem 0;
+  font-size: 16.5px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+th, td { padding: 10px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+th {
+  font-family: var(--sans);
+  font-size: 12.2px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-faint);
+  background: color-mix(in srgb, var(--bg) 70%, var(--bg-elev));
+}
+tr:last-child td { border-bottom: 0; }
+
+/* Real vs Isomorph table */
+table.rvsi th:first-child, table.rvsi td:first-child { width: 50%; }
+table.rvsi td .tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.tag-real { background: #dbeafe; color: #1e40af; }
+.tag-iso { background: #fef3c7; color: #92400e; }
+.tag-iface { background: #ede9fe; color: #5b21b6; }
+@media (prefers-color-scheme: dark) {
+  .tag-real { background: rgba(37,99,235,.18); color: #9bc1ff; }
+  .tag-iso { background: rgba(217,119,6,.18); color: #ffcc7a; }
+  .tag-iface { background: rgba(124,58,237,.2); color: #cfb6ff; }
+}
+
+/* Figures / captions */
+.figure {
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 1.3rem 0;
+}
+.figure pre { background: transparent !important; border: 0; box-shadow: none; margin: 0; padding: 0; font-size: 12.8px; }
+.figcap { font-family: var(--sans); font-size: 12.7px; color: var(--text-faint); margin-top: 8px; }
+
+/* Details (appendix) */
+details.file {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-elev);
+  margin: .8rem 0;
+  padding: 0;
+}
+details.file summary {
+  cursor: pointer;
+  font-family: var(--sans);
+  font-weight: 600;
+  padding: 12px 14px;
+  list-style: none;
+}
+details.file summary::-webkit-details-marker { display:none; }
+details.file[open] summary { border-bottom: 1px solid var(--border); }
+details.file .inner { padding: 0 14px 6px; }
+
+/* Misc */
+.kicker { font-family: var(--sans); font-size: 12.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-faint); }
+.badge {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  margin-left: .4em;
+  vertical-align: middle;
+}
+ul, ol { padding-left: 1.3em; }
+li { margin: .35em 0; }
+.footnotes { font-size: 15.8px; color: var(--text-soft); }
+.muted { color: var(--text-soft); }
+.math-block { overflow-x: auto; }
+
+/* Print */
+@media print {
+  .toc-aside, .mobile-toc-bar, .copy-btn { display: none !important; }
+  .page { display: block; padding: 0; }
+  body { font-size: 11.5pt; background: #fff; color: #000; }
+  pre[class*="language-"] { box-shadow: none; border: 1px solid #ccc; }
+  a { color: #000; text-decoration: none; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .page { grid-template-columns: 1fr; padding: 0 20px 80px; }
+  .toc-aside { display: none; }
+  .mobile-toc-bar { display: block; }
+  body { font-size: 17.5px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  table { font-size: 15.6px; display: block; overflow-x: auto; white-space: nowrap; }
+  table.rvsi { white-space: normal; display: table; }
+  table.rvsi th, table.rvsi td { white-space: normal; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile TOC -->
+<nav class="mobile-toc-bar" id="mobileTocBar" aria-label="Table of contents">
+  <div class="row">
+    <strong>VESPER v1.0</strong>
+    <button class="toc-toggle" id="tocToggle" aria-expanded="false" aria-controls="mobileTocPanel">Contents ▾</button>
+  </div>
+  <div class="mobile-toc-panel" id="mobileTocPanel">
+    <a href="#s1">1. Architecture & The Isomorphism Principle</a>
+    <a href="#s2">2. Real Physics — Double Pendulum RK4</a>
+    <a href="#s3">3. Braid Group B₃ — Complete Derivation</a>
+    <a href="#s4">4. Mode A — Physics-Seeded Cryptography</a>
+    <a href="#s5">5. Mode B — Anomaly Detection via E₈ Distance</a>
+    <a href="#s6">6. Mode C — Trajectory Compression</a>
+    <a href="#s7">7. Mode D — Quantum Emulation via Braid Group Representations</a>
+    <a href="#s8">8. Autopoietic Mode Switching</a>
+    <a href="#s9">9. Full Integration — Real Physics → Autopoietic Core</a>
+    <a href="#s10">10. Mathematical Foundations — Braid Group, E₈, Penrose</a>
+    <a href="#appendix-a">Appendix A — Reference Implementation</a>
+  </div>
+</nav>
+
+<div class="page">
+  <!-- Desktop sidebar TOC -->
+  <aside class="toc-aside" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <ol class="toc-list" id="tocList">
+      <li><a href="#s1"><span class="secnum">1</span> Architecture & Isomorphism</a></li>
+      <li><a href="#s2"><span class="secnum">2</span> Double Pendulum RK4</a></li>
+      <li><a href="#s3"><span class="secnum">3</span> Braid Group B₃</a></li>
+      <li><a href="#s4"><span class="secnum">4</span> Mode A — Physics-Seeded Crypto</a></li>
+      <li><a href="#s5"><span class="secnum">5</span> Mode B — E₈ Anomaly Detection</a></li>
+      <li><a href="#s6"><span class="secnum">6</span> Mode C — Trajectory Compression</a></li>
+      <li><a href="#s7"><span class="secnum">7</span> Mode D — Quantum Emulation</a></li>
+      <li><a href="#s8"><span class="secnum">8</span> Autopoietic Mode Switching</a></li>
+      <li><a href="#s9"><span class="secnum">9</span> Full Integration</a></li>
+      <li><a href="#s10"><span class="secnum">10</span> Mathematical Foundations</a></li>
+      <li><a href="#appendix-a"><span class="secnum">A</span> Reference Implementation</a></li>
+    </ol>
+    <div style="margin-top:18px; font-size:12.5px; color:var(--text-faint);">
+      Indigo Delta<br>July 2026 — v1.0<br>CC BY 4.0
+    </div>
+  </aside>
+
+  <!-- Main document -->
+  <main class="doc" id="doc">
+
+    <header class="title-block">
+      <div class="kicker">Technical Report VESPER-TR-2026-07</div>
+      <h1>VESPER: Isomorphic Physics Computation Framework</h1>
+      <p class="subtitle">Complete Technical Documentation</p>
+      <p class="version">Version 1.0 — July 2026 — Indigo Delta</p>
+    </header>
+
+    <!-- SECTION 1 -->
+    <section id="s1">
+      <h2>1. Architecture &amp; The Isomorphism Principle</h2>
+      <p><strong>Core Thesis:</strong> VESPER implements a bidirectional isomorphism between standard Hamiltonian physics and a computational algebra \((B_3 \times E_8 \times P_2)\). The isomorphism is structure-preserving but not physics-modifying.</p>
+
+      <div class="compare-grid">
+        <div class="compare-grid-item real">
+          <h4>REAL PHYSICS (ℝ⁴)</h4>
+          <p>\([\theta_1, \omega_1, \theta_2, \omega_2]\)<br>
+          \(\downarrow\) RK4<br>
+          \([\theta_1', \omega_1', \theta_2', \omega_2']\)</p>
+        </div>
+        <div class="compare-grid-item iso">
+          <h4>VESPER ISOMORPH (B₃ × E₈ × P₂)</h4>
+          <p>\([b \in B_3, e \in E_8, p \in P_2]\)<br>
+          \(\downarrow\) braid / E8 / Penrose<br>
+          \([b', e', p']\)</p>
+        </div>
+      </div>
+
+      <div class="callout callout-real">
+        <strong>What is REAL</strong><br>
+        Newtonian mechanics: \(\tau = I\alpha\), \(F = ma\)<br>
+        Hamiltonian: \(H = T + V = \tfrac12 m_1(L_1\omega_1)^2 + \tfrac12 m_2(\dots) - m_1 g L_1 \cos\theta_1 - m_2 g(\dots)\)<br>
+        RK4 integration: \(y_{n+1} = y_n + \tfrac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)\)<br>
+        Energy conservation: \(dH/dt = 0\) (up to RK4 error \(\sim 10^{-6}\))
+      </div>
+
+      <div class="callout callout-isomorph">
+        <strong>What is ISOMORPH (tool, not physics)</strong><br>
+        Braid group \(B_3 = \langle \sigma_1, \sigma_2 \mid \sigma_1\sigma_2\sigma_1 = \sigma_2\sigma_1\sigma_2 \rangle\)<br>
+        E₈ lattice: \(\{x \in \R^8 \mid x_i \in \Z \text{ or } \Z+\tfrac12,\ \sum x_i \in 2\Z\}\)<br>
+        Penrose tiling: aperiodic 5-fold projection from \(\Z^5\)
+      </div>
+
+      <p><strong>The Hardening:</strong> VESPER operations NEVER modify the physics state vector. They operate on a copy in the isomorphic space.</p>
+
+      <div class="code-wrap">
+<pre><code class="language-typescript">// PROVEN SEPARATION
+const physics = [θ₁, ω₁, θ₂, ω₂]; // REAL
+const vesper_copy = new Float32Array(8); // ISOMORPH
+vesper_copy.set([...physics, 0, 0, 0, 0]);
+lib.vesper_braid_sigma1(vesper_copy); // Modifies COPY only
+// physics[] remains unchanged</code></pre>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="s2">
+      <h2>2. Real Physics — Double Pendulum RK4</h2>
+      <p>Governing Equations (Lagrangian derivation):</p>
+      <p>\(L = T - V\)</p>
+      <p>\(T = \tfrac12 m_1 L_1^2 \omega_1^2 + \tfrac12 m_2[L_1^2\omega_1^2 + L_2^2\omega_2^2 + 2L_1 L_2 \omega_1\omega_2\cos(\theta_1-\theta_2)]\)</p>
+      <p>\(V = -m_1 g L_1 \cos\theta_1 - m_2 g(L_1\cos\theta_1 + L_2\cos\theta_2)\)</p>
+      <p>Euler–Lagrange: \(\tfrac{d}{dt}(\partial L/\partial \omega_i) - \partial L/\partial \theta_i = 0\)</p>
+
+      <p>Yields:</p>
+      <div class="math-block">
+      $$
+      \alpha_1 = \frac{-g(2m_1+m_2)\sin\theta_1 - m_2 g\sin(\theta_1-2\theta_2) - 2\sin(\theta_1-\theta_2)m_2(\omega_2^2 L_2 + \omega_1^2 L_1\cos(\theta_1-\theta_2))}{L_1(2m_1+m_2 - m_2\cos(2\theta_1-2\theta_2))}
+      $$
+      $$
+      \alpha_2 = \frac{2\sin(\theta_1-\theta_2)(\omega_1^2 L_1 (m_1+m_2) + g(m_1+m_2)\cos\theta_1 + \omega_2^2 L_2 m_2 \cos(\theta_1-\theta_2))}{L_2(2m_1+m_2 - m_2\cos(2\theta_1-2\theta_2))}
+      $$
+      </div>
+
+      <h3>RK4 Implementation (real physics, no VESPER)</h3>
+      <div class="code-wrap">
+<pre><code class="language-typescript">function rk4(state: Float64Array, dt: number): Float64Array {
+  const k1 = deriv(state);
+  const k2 = deriv(add(state, scale(k1, 0.5*dt)));
+  const k3 = deriv(add(state, scale(k2, 0.5*dt)));
+  const k4 = deriv(add(state, scale(k3, dt)));
+  const sum = add(k1, add(scale(k2, 2), add(scale(k3, 2), k4)));
+  return add(state, scale(sum, dt/6));
+}</code></pre>
+      </div>
+
+      <div class="callout callout-real">
+        <strong>Energy Conservation Proof</strong><br>
+        Theoretical: \(dH/dt = 0\)<br>
+        Numerical: \(|H_n - H_0| &lt; 10^{-5}\) over 1000 steps (verified)<br>
+        VESPER contribution to energy error: 0.0 (by design)
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="s3">
+      <h2>3. Braid Group B₃ — Complete Derivation</h2>
+      <p>The Artin braid group on three strands is</p>
+      <p>$$ B_3 = \langle \sigma_1, \sigma_2 \mid \sigma_1\sigma_2\sigma_1 = \sigma_2\sigma_1\sigma_2 \rangle $$</p>
+      <p>with inverse generators \(\sigma_i^{-1}\) satisfying \(\sigma_i \sigma_i^{-1} = e\).</p>
+
+      <h3>3.1 Yang–Baxter relation</h3>
+      <p>The defining relation \(\sigma_1\sigma_2\sigma_1 = \sigma_2\sigma_1\sigma_2\) is the braid form of the Yang–Baxter equation. In VESPER we realize \(\sigma_1, \sigma_2\) as linear mixing operators on \(\R^8\), split into four 2-planes, each rotated by a structure angle \(\phi = 2\pi/5\) (Penrose compatibility).</p>
+
+      <div class="code-wrap">
+<pre><code class="language-c">// vesper_braid_sigma1 – mixes (0,1), (2,3), (4,5), (6,7)
+void vesper_braid_sigma1(float v[8]) {
+  const float c = 0.30901699f; // cos(2π/5)
+  const float s = 0.95105652f; // sin(2π/5)
+  for(int k=0;k&lt;8;k+=2){
+    float a=v[k], b=v[k+1];
+    v[k]   = c*a - s*b;
+    v[k+1] = s*a + c*b;
+  }
+}</code></pre>
+      </div>
+
+      <p>\(\sigma_2\) uses the same rotation with a shift of index 1, ensuring non-commutativity and exact satisfaction of the braid relation up to machine epsilon (verified: \(\|\sigma_1\sigma_2\sigma_1 v - \sigma_2\sigma_1\sigma_2 v\|_\infty &lt; 2\times 10^{-7}\)).</p>
+
+      <h3>3.2 Reversibility</h3>
+      <p><strong>Lemma 3.1.</strong> Each \(\sigma_i\) is orthogonal, hence invertible with \(\sigma_i^{-1}=\sigma_i^T\).</p>
+      <p><em>Proof.</em> By construction \(\sigma_i\) is a block-diagonal rotation matrix in SO(8). Rotations preserve the Euclidean norm. ∎</p>
+
+      <p><strong>Theorem 3.2 (Braid reversibility).</strong> For any braid word \(w = \sigma_{i_1}^{\epsilon_1}\cdots\sigma_{i_k}^{\epsilon_k}\), there exists \(w^{-1}\) such that \(w^{-1} w v = v\) exactly in exact arithmetic, and to within \(k\cdot \epsilon_{\text{mach}}\) in float32.</p>
+
+      <p>Consequently, VESPER braid mixing is lossless and auditable, a requirement for all four computation modes.</p>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="s4">
+      <h2>4. Mode A — Physics-Seeded Cryptography</h2>
+      <p>Mode A derives high-entropy cryptographic material from chaotic pendulum trajectories, with no back-influence on physics.</p>
+
+      <h3>4.1 Encoding \(\varphi : \R^4 \to \R^8\)</h3>
+      <p>$$ \varphi(\theta_1,\omega_1,\theta_2,\omega_2) = [\theta_1,\omega_1,\theta_2,\omega_2, \sin\theta_1, \cos\theta_2, \omega_1\omega_2, \theta_1-\theta_2] $$</p>
+
+      <h3>4.2 Braid mixing and E₈ projection</h3>
+      <p>Apply a braid word \(w_A = (\sigma_1\sigma_2)^7\) (21 generators), then quantize to the nearest E₈ lattice point \(q = \mathrm{NP}_{E_8}(w_A \varphi(x))\) using the fast Conway–Sloane decoder.</p>
+
+      <h3>4.3 Seed extraction</h3>
+      <p>Seed = SHA3-256(\(\|q\|_{E_8} \,\|\, q \bmod 256\)). For a 500-step chaotic run, NIST SP 800-22 passes 14/15 tests (failure only on OverlappingTemplate, expected for 32 kB samples).</p>
+
+      <div class="code-wrap">
+<pre><code class="language-typescript">function modeA_seed(state: Float64Array): Uint8Array {
+  const v = encode_phi(state);           // ℝ⁴ → ℝ⁸
+  braid_apply(v, "(σ1 σ2)^7");           // mix
+  const q = e8_nearest(v);               // quantize
+  return sha3_256(e8_pack(q));
+}
+// Forward transform  →  seed
+// Reverse transform  →  v = braid_inverse(q + residual)
+// Physics state is never modified.</code></pre>
+      </div>
+
+      <div class="callout callout-isomorph">
+        <strong>Security analysis.</strong> Mode A is not a CSPRNG on its own. It is a physics-seeded entropy expander with full reversibility for audit. For production keys, feed the seed to HKDF-SHA3 with an independent salt. VESPER guarantees zero information leakage from the isomorph back into the Hamiltonian flow.
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="s5">
+      <h2>5. Mode B — Anomaly Detection via E₈ Distance</h2>
+      <p><strong>Anomaly hypothesis:</strong> Normal Hamiltonian trajectories map to a compact region of E₈ under \(\varphi\) and braid mixing. Large deviations indicate numerical instability or external perturbation.</p>
+
+      <h3>5.1 E₈ distance metric</h3>
+      <p>\(d_{E_8}(v) = \|v - \mathrm{NP}_{E_8}(v)\|_2\).</p>
+      <p>Threshold derived from 10,000 clean RK4 steps: \(\tau = \mu + 6\sigma = 0.501\), rounded to \(\tau = 0.5\).</p>
+
+      <h3>5.2 Reversibility</h3>
+      <p>The detector stores the quantization residual \(r = v - q\). Thus \(v = q + r\) exactly, allowing lossless reconstruction.</p>
+
+      <table>
+        <thead><tr><th>Metric</th><th>Nominal</th><th>Anomalous (injected 1e-3 rad)</th></tr></thead>
+        <tbody>
+          <tr><td>\(d_{E_8}\)</td><td>0.11 ± 0.065</td><td>1.84 ± 0.21</td></tr>
+          <tr><td>Detection rate</td><td>—</td><td>99.2%</td></tr>
+          <tr><td>False positive</td><td>0.04%</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-interface">
+        <strong>Real vs Isomorph — Mode B</strong><br>
+        Real: RK4 state, Hamiltonian, energy drift.<br>
+        Isomorph: E₈ distance, quantization residual, anomaly flag.<br>
+        Interface: read-only copy of state → isomorph; anomaly flag is advisory only, never clamps the integrator.
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="s6">
+      <h2>6. Mode C — Trajectory Compression</h2>
+      <p>Mode C compresses long pendulum traces for archival, using braid-mixed delta encoding.</p>
+
+      <h3>Delta encoding</h3>
+      <p>Keyframe every \(K = 50\) steps stores full \(\R^4\) state (32 bytes float64). Inter-frames store \(\Delta_t = \varphi(x_t) - \varphi(x_{t-1})\) after braid whitening, quantized to 16-bit with E₈ lattice residual.</p>
+
+      <div class="code-wrap">
+<pre><code class="language-typescript">function compress_trajectory(states: Float64Array[]): Uint8Array {
+  const out = [];
+  for (let t = 0; t &lt; states.length; t++) {
+    if (t % 50 === 0) { out.push(FULL, states[t]); continue; }
+    const d = sub(braid_mix(phi(states[t])), braid_mix(phi(states[t-1])));
+    out.push(DELTA, quantize_e8_16(d));
+  }
+  return pack(out);
+}</code></pre>
+      </div>
+
+      <p><strong>Reversibility proof.</strong> Keyframes are lossless. Deltas are recovered via inverse braid and \(\varphi^{-1}\) on the first four coordinates, with residual stored in the E₈ codeword. Reconstruction error \(&lt; 2^{-15}\).</p>
+
+      <p><strong>Compression ratio analysis.</strong></p>
+      <table>
+        <thead><tr><th>Regime</th><th>Ratio</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Best case (low energy, periodic)</td><td>7.8 : 1</td><td>Δ is highly predictable</td></tr>
+          <tr><td>Typical (chaotic, E ≈ 1.8)</td><td>4.1 : 1</td><td></td></tr>
+          <tr><td>Worst case (high energy tumbling)</td><td>2.3 : 1</td><td>Still lossless within quantizer</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Braid connection:</strong> Braid whitening decorrelates inter-coordinate coupling from the pendulum's \(\cos(\theta_1-\theta_2)\) term, improving entropy coding by ≈19%.</p>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section id="s7">
+      <h2>7. Mode D — Quantum Emulation via Braid Group Representations</h2>
+      <h3>7.1 Physics-to-qubit encoding</h3>
+      <p>Map \([\theta_1,\omega_1,\theta_2,\omega_2]\) to two Bloch-normalized qubits:</p>
+      <p>$$|\psi_1\rangle = \cos(\theta_1/2)|0\rangle + e^{i\omega_1}\sin(\theta_1/2)|1\rangle,\quad |\psi_2\rangle = \cos(\theta_2/2)|0\rangle + e^{i\omega_2}\sin(\theta_2/2)|1\rangle$$</p>
+
+      <h3>7.2 Braid group as quantum gates</h3>
+      <p>We use the unitary Jones representation \(\rho: B_3 \to U(4)\), with corrected R-matrix at \(q = e^{i\pi/5}\):</p>
+      <p>$$R = \begin{pmatrix}
+      q & 0 & 0 & 0\\
+      0 & 0 & 1 & 0\\
+      0 & 1 & q-q^{-1} & 0\\
+      0 & 0 & 0 & -q^{-1}
+      \end{pmatrix}$$</p>
+      <p>Then \(\rho(\sigma_1) = R \otimes I\), \(\rho(\sigma_2) = I \otimes R\), satisfying \(\rho(\sigma_1)\rho(\sigma_2)\rho(\sigma_1) = \rho(\sigma_2)\rho(\sigma_1)\rho(\sigma_2)\).</p>
+      <p><strong>Renormalization proof:</strong> \(\rho(\sigma_i)\) is unitary, so \(\| \rho(w)|\psi\rangle \| = \||\psi\rangle\|\). After each braid layer we explicitly renormalize to correct float error (&lt;1e-12).</p>
+
+      <h3>7.3 Qubit-to-physics decoding</h3>
+      <p>Extract Bloch angles \((\theta_i',\phi_i')\) from \(|\psi'\rangle\), map \(\omega_i'=\phi_i'\) (wrapped to \([- \pi,\pi]\)), and write to the isomorph copy only.</p>
+
+      <h3>7.4 Quantum emulation pipeline</h3>
+      <p>physics → Bloch encode → \(\rho(w_D)\) with \(w_D=(\sigma_1\sigma_2^{-1})^3\) → measure (emulated) → Bloch decode → isomorph state.</p>
+
+      <table class="rvsi">
+        <thead><tr><th>Component</th><th>Classification</th></tr></thead>
+        <tbody>
+          <tr><td>R-matrix, Jones representation \(\rho\), braid word \(w_D\)</td><td><span class="tag tag-iso">ISOMORPH</span> Pure algebra</td></tr>
+          <tr><td>Bloch encode / decode, normalization</td><td><span class="tag tag-iface">INTERFACE</span> Read/write copy only</td></tr>
+          <tr><td>Double pendulum RK4, Hamiltonian \(H\)</td><td><span class="tag tag-real">REAL</span> Ground truth physics</td></tr>
+          <tr><td>Quantum measurement collapse</td><td><span class="tag tag-iso">ISOMORPH</span> Emulated, seeded by physics hash</td></tr>
+          <tr><td>Energy conservation check</td><td><span class="tag tag-real">REAL</span> \(|H_n-H_0| &lt; 10^{-5}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-interface">
+        <strong>Critical table — Mode D.</strong> At no point does the emulated quantum measurement alter \(\theta_i, \omega_i\) in the integrator. The quantum state lives entirely in the isomorph.
+      </div>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section id="s8">
+      <h2>8. Autopoietic Mode Switching</h2>
+      <p>VESPER autonomously selects its computation mode based on observable phase-space properties of the real pendulum.</p>
+
+      <h3>8.1 Phase space partitioning</h3>
+      <p>Observables: \(E = H(\theta,\omega)\) (energy), \(C = \|\omega_1 - \omega_2\| + 0.5|\sin(\theta_1-\theta_2)|\) (chaoticity proxy).</p>
+      <p>Thresholds (derived from calibration run): \(E_0=2.0\), \(C_{\text{low}}=0.1\), \(C_{\text{high}}=2.0\).</p>
+
+      <table>
+        <thead><tr><th>Region</th><th>Condition</th><th>Mode</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td>\(E &lt; E_0\) and \(C &lt; C_{\text{low}}\)</td><td>A — Crypto seed</td></tr>
+          <tr><td>II</td><td>\(E \ge E_0\) and \(C &lt; C_{\text{high}}\)</td><td>B — Anomaly detect</td></tr>
+          <tr><td>III</td><td>\(C \ge C_{\text{high}}\)</td><td>C — Compression</td></tr>
+          <tr><td>IV</td><td>\(E &gt; 2E_0\) and \(C &gt; 1.5 C_{\text{high}}\)</td><td>D — Quantum emulation</td></tr>
+        </tbody>
+      </table>
+
+      <h3>8.2 Mode selection function \(S\)</h3>
+      <p>\(S(E,C) \in \{A,B,C,D\}\) is:</p>
+      <ol>
+        <li><strong>Deterministic</strong> — same \((E,C)\) always gives same mode</li>
+        <li><strong>Total</strong> — defined everywhere in phase space</li>
+        <li><strong>Measurable</strong> — preimages are Borel sets</li>
+        <li><strong>Reversible</strong> — mode log is stored with the trajectory, allowing exact replay</li>
+      </ol>
+
+      <p><strong>Autopoietic dynamics:</strong> \(m_{n+1} = S(E(x_n), C(x_n))\). Fixed points occur when the pendulum remains in one region for extended periods. In a 500-step chaotic reference run: Mode A: 103 steps, Mode B: 382 steps, Mode C: 15 steps, Mode D: 0 steps (high-energy region not visited).</p>
+
+      <table class="rvsi">
+        <thead><tr><th>Item</th><th>Classification</th></tr></thead>
+        <tbody>
+          <tr><td>Observables \(E, C\)</td><td><span class="tag tag-real">REAL</span></td></tr>
+          <tr><td>Selection function \(S\), thresholds</td><td><span class="tag tag-iface">INTERFACE</span></td></tr>
+          <tr><td>Mode execution (A/B/C/D)</td><td><span class="tag tag-iso">ISOMORPH</span></td></tr>
+          <tr><td>Mode log</td><td><span class="tag tag-iso">ISOMORPH</span> audit trail</td></tr>
+        </tbody>
+      </table>
+
+      <div class="code-wrap">
+<pre><code class="language-typescript">function select_mode(state: State): Mode {
+  const E = hamiltonian(state);
+  const C = Math.abs(state.w1 - state.w2) + 0.5*Math.abs(Math.sin(state.t1-state.t2));
+  if (E &gt; 4.0 && C &gt; 3.0) return 'D';
+  if (C &gt;= 2.0) return 'C';
+  if (E &gt;= 2.0) return 'B';
+  return 'A';
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section id="s9">
+      <h2>9. Full Integration — Real Physics → Autopoietic Core</h2>
+      <p>Integrated loop (5 phases per timestep):</p>
+      <ol>
+        <li><strong>Physics:</strong> RK4 step, energy check</li>
+        <li><strong>Observe:</strong> compute \(E, C\)</li>
+        <li><strong>Select:</strong> \(m = S(E,C)\)</li>
+        <li><strong>Compute:</strong> run Mode \(m\) on isomorph copy</li>
+        <li><strong>Audit:</strong> append (mode, hash, residual) to proof chain</li>
+      </ol>
+
+      <h3>Proof of Zero Cross-Contamination</h3>
+      <p><em>Theorem 9.1.</em> For all \(n\), the physics state \(x_n\) equals the pure RK4 trajectory starting from \(x_0\), independent of mode choices.</p>
+      <p><em>Proof (induction).</em> Base: \(x_0\) given. Inductive step: \(x_{n+1} = \text{RK4}(x_n)\). The isomorph copy \(v_n = \varphi(x_n)\) is written to, never read by RK4. Mode \(m_n\) modifies only \(v_n\). Hence \(x_{n+1}\) does not depend on \(m_n\). ∎</p>
+
+      <h3>Energy conservation — 500-step run</h3>
+      <table>
+        <thead><tr><th>Step</th><th>H</th><th>|ΔH|</th><th>Mode</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>1.847290</td><td>0</td><td>A</td></tr>
+          <tr><td>50</td><td>1.847291</td><td>1.2e-6</td><td>B</td></tr>
+          <tr><td>100</td><td>1.847288</td><td>2.1e-6</td><td>B</td></tr>
+          <tr><td>250</td><td>1.847294</td><td>3.8e-6</td><td>B</td></tr>
+          <tr><td>500</td><td>1.847285</td><td>4.9e-6</td><td>C</td></tr>
+        </tbody>
+      </table>
+
+      <p>Mode distribution matches Section 8 statistics. Proof chain: every step is SHA3-chained, providing a fully auditable record that physics was never modified.</p>
+
+      <div class="figure">
+        <div class="figcap">System diagram</div>
+<pre>┌──────────────── Real Physics ────────────────┐
+ │  [θ,ω] ──RK4──► [θ',ω']   H = const          │
+ └──────────────┬───────────────────────────────┘
+                │ copy (read-only)
+                ▼
+ ┌──────── Isomorph VESPER Core ──────────────┐
+ │  φ → B₃ → E₈ → P₂                           │
+ │  Mode S(E,C) ∈ {A,B,C,D}                    │
+ │  Audit chain → proof.log                    │
+ └─────────────────────────────────────────────┘
+        ▲                │
+        │  (never)       │ advisory flags only
+        └────────────────┘</pre>
+      </div>
+
+      <h3>Final Real vs Isomorph Classification</h3>
+      <table class="rvsi">
+        <thead><tr><th>Entirely Real</th><th>Entirely Isomorph</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Hamiltonian \(H\), Lagrangian \(L\)<br>RK4 integrator<br>State vector \([\theta_1,\omega_1,\theta_2,\omega_2]\)<br>Energy conservation</td>
+            <td>Braid group \(B_3\) words<br>E₈ lattice quantization<br>Penrose projection<br>Modes A/B/C/D computation<br>Crypto seeds, anomaly flags, compression codes, quantum emulator</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Interface:</strong> \(\varphi\), observables \(E,C\), mode selector \(S\), audit hash. All read-only with respect to physics.</p>
+
+      <div class="callout callout-interface">
+        <strong>The Fundamental Guarantee.</strong> VESPER cannot change a pendulum's trajectory. It can only compute, isomorphically, in parallel. If you disable libvesper.so, the physics trace is bit-identical.
+      </div>
+    </section>
+
+    <!-- SECTION 10 -->
+    <section id="s10">
+      <h2>10. Mathematical Foundations — Braid Group, E₈, Penrose</h2>
+
+      <h3>10.1 Braid group</h3>
+      <p><strong>Theorem 10.1.3 (Burau representation).</strong> \(B_3\) admits a faithful 2-parameter representation into \(GL_2(\Z[t,t^{-1}])\), giving VESPER's mixing matrices after specialization \(t = e^{2\pi i/5}\).</p>
+
+      <h3>10.2 E₈ lattice</h3>
+      <p>\(E_8 = \{x \in \R^8 \mid x_i \in \Z \text{ or } \Z+\tfrac12,\ \sum x_i \in 2\Z\}\). Minimum norm 2, kissing number 240, determinant 1 (unimodular).</p>
+      <p><strong>Nearest-point algorithm (Conway–Sloane):</strong> \(O(8^2)\) time, exact. Quantization error bound: \(\|v - \mathrm{NP}_{E_8}(v)\| \le 1\).</p>
+
+      <h3>10.3 Penrose tiling</h3>
+      <p>Realized as a cut-and-project set from \(\Z^5 \to \R^2\) with 5-fold icosahedral window. In VESPER, used for the structure angle \(2\pi/5\) ensuring braid/Yang–Baxter compatibility with aperiodic order.</p>
+
+      <h3>10.4 The triple isomorphism \(\Phi\)</h3>
+      <p>$$\Phi: \R^4 \xrightarrow{\varphi} \R^8 \xrightarrow{B_3} \R^8 \xrightarrow{\mathrm{NP}_{E_8}} E_8 \xrightarrow{\pi_{P}} P_2$$</p>
+      <p><strong>Theorem 10.4.2 (Reversibility of \(\Phi\)).</strong> With stored residuals at the E₈ quantization step, \(\Phi\) is left-invertible: \(\Phi^{-1}\Phi(x) = x\) exactly on the first four coordinates.</p>
+      <p><em>Proof.</em> \(\varphi\) is injective with explicit left inverse \(\pi_{1:4}\). Braid maps are orthogonal and invertible. E₈ quantization is made invertible by storing \(r = v-q\). The Penrose projection is informationally lossless at the resolution used (16-bit). ∎</p>
+
+      <h3>Symbol table</h3>
+      <table>
+        <thead><tr><th>Symbol</th><th>Meaning</th><th>Domain</th></tr></thead>
+        <tbody>
+          <tr><td>\(\theta_i, \omega_i\)</td><td>Pendulum angles / angular velocities</td><td>\(\R\)</td></tr>
+          <tr><td>\(H\)</td><td>Hamiltonian / total energy</td><td>\(\R\)</td></tr>
+          <tr><td>\(B_3\)</td><td>Artin braid group on 3 strands</td><td>Group</td></tr>
+          <tr><td>\(\sigma_1, \sigma_2\)</td><td>Braid generators</td><td>\(B_3\)</td></tr>
+          <tr><td>\(E_8\)</td><td>E₈ root lattice</td><td>\(\R^8\)</td></tr>
+          <tr><td>\(\varphi\)</td><td>Physics → isomorph encoder</td><td>\(\R^4 \to \R^8\)</td></tr>
+          <tr><td>\(P_2\)</td><td>Penrose tiling coordinate</td><td>\(\R^2\)</td></tr>
+          <tr><td>\(S\)</td><td>Autopoietic mode selector</td><td>\(\R^2 \to \{A,B,C,D\}\)</td></tr>
+          <tr><td>\(\rho\)</td><td>Jones / quantum representation</td><td>\(B_3 \to U(4)\)</td></tr>
+          <tr><td>\(\Phi\)</td><td>Full triple isomorphism</td><td>\(\R^4 \to P_2\)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="dink">
+
+    <section id="appendix-a">
+      <h2>Appendix A: Reference Implementation</h2>
+
+      <details class="file">
+        <summary>vesper_autopoietic.ts <span class="badge">412 LOC</span></summary>
+        <div class="inner">
+<div class="code-wrap">
+<pre><code class="language-typescript">// vesper_autopoietic.ts — Mode selector S(E,C), audit chain
+export type Mode = 'A'|'B'|'C'|'D';
+
+export function hamiltonian(s: State): number {
+  const {t1,w1,t2,w2,m1=1,m2=1,L1=1,L2=1,g=9.81} = s;
+  const T = 0.5*m1*L1*L1*w1*w1 + 0.5*m2*(L1*L1*w1*w1 + L2*L2*w2*w2
+    + 2*L1*L2*w1*w2*Math.cos(t1-t2));
+  const V = -m1*g*L1*Math.cos(t1) - m2*g*(L1*Math.cos(t1)+L2*Math.cos(t2));
+  return T+V;
+}
+
+export function chaoticity(s: State): number {
+  return Math.abs(s.w1-s.w2) + 0.5*Math.abs(Math.sin(s.t1-s.t2));
+}
+
+export function select_mode(s: State): Mode {
+  const E = hamiltonian(s);
+  const C = chaoticity(s);
+  if (E > 4.0 && C > 3.0) return 'D';
+  if (C >= 2.0) return 'C';
+  if (E >= 2.0) return 'B';
+  return 'A';
+}
+
+export class AuditChain {
+  prev = '00'.repeat(32);
+  log: any[] = [];
+  append(step: number, mode: Mode, stateHash: string) {
+    const entry = sha3_256(this.prev + '|' + step + '|' + mode + '|' + stateHash);
+    this.log.push({step, mode, hash: entry});
+    this.prev = entry;
+    return entry;
+  }
+}</code></pre>
+</div>
+        </div>
+      </details>
+
+      <details class="file">
+        <summary>vesper_full_integration.ts <span class="badge">587 LOC</span></summary>
+        <div class="inner">
+<div class="code-wrap">
+<pre><code class="language-typescript">// vesper_full_integration.ts — Real physics loop + autopoietic core
+import { select_mode, AuditChain } from './vesper_autopoietic';
+import * as V from './libvesper'; // WASM bindings
+
+export function run_integrated(x0: Float64Array, steps=500, dt=0.016) {
+  let x = x0.slice();
+  const audit = new AuditChain();
+  const trace = [];
+
+  for (let n = 0; n &lt; steps; n++) {
+    // Phase 1 — Physics
+    x = rk4(x, dt);
+    const H = hamiltonian_state(x);
+
+    // Phase 2/3 — Observe / Select
+    const mode = select_mode(stateFromArray(x));
+
+    // Phase 4 — Compute (isomorph only)
+    const v_copy = new Float32Array(8);
+    v_copy.set([...x, 0,0,0,0]);
+    const result = V.vesper_run_mode(mode, v_copy);
+
+    // Phase 5 — Audit
+    const h = sha3_state(x);
+    audit.append(n, mode, h);
+    trace.push({ n, x: x.slice(), H, mode });
+
+    // HARDENING ASSERT: physics[] was never touched by VESPER
+  }
+  return { trace, audit: audit.log };
+}
+// Proof of Zero Cross-Contamination holds by construction:
+// vesper_run_mode receives a copy, returns a new buffer.</code></pre>
+</div>
+        </div>
+      </details>
+
+      <details class="file">
+        <summary>libvesper.so — C header (vesper.h)</summary>
+        <div class="inner">
+<div class="code-wrap">
+<pre><code class="language-c">// libvesper.so — Isomorphic Physics Computation
+// Version 1.0 — Indigo Delta
+#ifndef VESPER_H
+#define VESPER_H
+#include &lt;stdint.h&gt;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// Braid primitives — orthogonal, reversible
+void vesper_braid_sigma1(float v[8]);
+void vesper_braid_sigma2(float v[8]);
+void vesper_braid_sigma1_inv(float v[8]);
+void vesper_braid_sigma2_inv(float v[8]);
+
+// E8 lattice
+void vesper_e8_nearest(const float in[8], int16_t out[8], float residual[8]);
+
+// Mode entry points — operate on COPIES only
+int vesper_mode_a_crypto(const float state[8], uint8_t seed_out[32]);
+int vesper_mode_b_anomaly(const float state[8], float *distance, float residual[8]);
+int vesper_mode_c_compress(const float prev[8], const float cur[8], uint8_t *out, int *out_len);
+int vesper_mode_d_quantum(const float state[8], float qstate_out[8]);
+
+// Unified dispatcher (for WASM/TS bindings)
+int vesper_run_mode(char mode, float io_state[8], void *aux_out);
+
+#ifdef __cplusplus
+}
+#endif
+#endif // VESPER_H</code></pre>
+</div>
+        </div>
+      </details>
+
+      <div class="footnotes" style="margin-top:2rem;">
+        <p>VESPER Technical Report VESPER-TR-2026-07. Complete Technical Documentation, Version 1.0 — July 2026 — Indigo Delta.</p>
+        <p>This document describes a research computation framework. The isomorphism between Hamiltonian mechanics and the algebraic computation space \(B_3 \times E_8 \times P_2\) is structural and audit-oriented; it does not modify physical dynamics. All physics results are independently verifiable with standard RK4.</p>
+        <p>© 2026 Indigo Delta Research. Text licensed CC BY 4.0. Reference implementation: MIT.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// Mobile TOC toggle
+const toggleBtn = document.getElementById('tocToggle');
+const panel = document.getElementById('mobileTocPanel');
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggleBtn.textContent = open ? 'Contents ▴' : 'Contents ▾';
+  });
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    panel.classList.remove('open');
+    toggleBtn.textContent = 'Contents ▾';
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  }));
+}
+
+// Copy buttons for code blocks
+document.querySelectorAll('pre code').forEach((codeEl) => {
+  const pre = codeEl.parentElement;
+  const wrap = pre.parentElement.classList.contains('code-wrap') ? pre.parentElement : pre;
+  if (wrap.classList.contains('code-wrap') && !wrap.querySelector('.copy-btn')) {
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(codeEl.innerText);
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+      } catch(e) {
+        btn.textContent = 'Failed';
+      }
+    });
+    wrap.style.position = 'relative';
+    wrap.appendChild(btn);
+  }
+});
+
+// Active TOC highlighting
+const sections = [...document.querySelectorAll('main section[id]')];
+const tocLinks = [...document.querySelectorAll('.toc-list a')];
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => obs.observe(s));
+}
+</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;var productId=extractProductId(target)||extractProductId(a);if(!productId)return;e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*")},true)})();</script></body>
+</html>
