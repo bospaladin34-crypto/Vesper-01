@@ -1,0 +1,13 @@
+/target/
+**/target/
+*.so
+*.dll
+*.dylib
+*.bin
+*.o
+*.rlib
+*.rmeta
+*.d
+vesper_*.log
+vesper_*.state
+.DS_Store
